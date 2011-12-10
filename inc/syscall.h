@@ -23,6 +23,10 @@ enum {
 	SYS_time_msec,
 	SYS_e1000_transmit,
 	SYS_e1000_receive,
+	SYS_page_recover,
+	SYS_page_evict,
+	SYS_page_audit,
+	SYS_page_alloc_exists_on_remote,
 	NSYSCALLS
 };
 

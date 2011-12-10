@@ -181,24 +181,8 @@ sys_env_set_trapframe(envid_t envid, uintptr_t tf_ptr)
     return 0;
 }
 
-// Allocate a page of memory and map it at 'va' with permission
-// 'perm' in the address space of 'envid'.
-// The page's contents are set to 0.
-// If a page is already mapped at 'va', that page is unmapped as a
-// side effect.
-//
-// perm -- PTE_U | PTE_P must be set, PTE_AVAIL | PTE_W may or may not be set,
-//         but no other bits may be set.  See PTE_SYSCALL in inc/mmu.h.
-//
-// Return 0 on success, < 0 on error.  Errors are:
-//	-E_BAD_ENV if environment envid doesn't currently exist,
-//		or the caller doesn't have permission to change envid.
-//	-E_INVAL if va >= UTOP, or va is not page-aligned.
-//	-E_INVAL if perm is inappropriate (see above).
-//	-E_NO_MEM if there's no memory to allocate the new page,
-//		or to allocate any necessary page tables.
 static int
-sys_page_alloc(envid_t envid, uintptr_t va, int perm)
+_sys_page_alloc(envid_t envid, uintptr_t va, int perm, bool exists_on_remote)
 {
 	// Hint: This function is a wrapper around page_alloc() and
 	//   page_insert() from kern/pmap.c.
@@ -232,6 +216,31 @@ sys_page_alloc(envid_t envid, uintptr_t va, int perm)
     // zero out the page
     memset(page2kva(p), 0, PGSIZE);
     return 0;    
+}
+
+// Allocate a page of memory and map it at 'va' with permission
+// 'perm' in the address space of 'envid'.
+// The page's contents are set to 0.
+// If a page is already mapped at 'va', that page is unmapped as a
+// side effect.
+//
+// perm -- PTE_U | PTE_P must be set, PTE_AVAIL | PTE_W may or may not be set,
+//         but no other bits may be set.  See PTE_SYSCALL in inc/mmu.h.
+//
+// Return 0 on success, < 0 on error.  Errors are:
+//	-E_BAD_ENV if environment envid doesn't currently exist,
+//		or the caller doesn't have permission to change envid.
+//	-E_INVAL if va >= UTOP, or va is not page-aligned.
+//	-E_INVAL if perm is inappropriate (see above).
+//	-E_NO_MEM if there's no memory to allocate the new page,
+//		or to allocate any necessary page tables.
+static int
+sys_page_alloc(envid_t envid, uintptr_t va, int perm) {
+	return _sys_page_alloc(envid, va, perm, false);
+}
+static int
+sys_page_alloc_exists_on_remote(envid_t envid, uintptr_t va, int perm) {
+	return _sys_page_alloc(envid, va, perm, true);
 }
 
 // Map the page of memory at 'srcva' in srcenvid's address space
@@ -310,6 +319,199 @@ sys_page_unmap(envid_t envid, uintptr_t va)
     // remove the page
     page_remove(env->env_pgdir, va);
     return 0;
+}
+
+static int
+_sys_page_check(unsigned ppn) {
+	// Only check userland pages.
+	const size_t n_pages = UTOP >> 12;
+	// Manual "div round up", so that truncation doesn't lead us to miss pages
+    const size_t n_pdx = (UTOP >> 22) + (UTOP % (1 << 22) == 0 ? 0 : 1);
+
+	uint32_t this_envx = ENVX(curenv->env_id);
+	struct Env *e;
+
+	int found_in_others = 0;
+	int writable = 0;
+
+	lcr3(PADDR(kern_pgdir));
+	for (uint32_t envx = 0; envx < NENV; envx++) {
+
+		e = &envs[envx];
+		if (e->env_status == ENV_FREE) continue;
+
+		for (unsigned pdx = 0; pdx < n_pdx; pdx++) {
+			if(e->env_pgdir[pdx] & PTE_P) {
+				pte_t *ptable = (pte_t*)KADDR(PTE_ADDR(e->env_pgdir[pdx]));
+				for(unsigned ptx = 0, tpn = pdx << 10;
+						tpn < n_pages && (tpn >> 10) == pdx; ptx++, tpn++) {
+					if(ptable[ptx] & PTE_P) {
+						// We have found a match!
+						if (PTE_ADDR(ptable[ptx]) >> PGSHIFT == ppn) {
+							if (ptable[ptx] & PTE_W) {
+								writable = 1;
+							}
+							if (this_envx != envx) {
+								found_in_others = 1;
+							}
+							if (writable && found_in_others) {
+								return 2;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	lcr3(PADDR(curenv->env_pgdir));
+
+	// If it was both writable and found in others, then we would
+	// have already returned 2.
+	return found_in_others;
+}
+
+
+static void
+_sys_evict_at_all_sites(unsigned ppn) {
+	// Only check userland pages.
+	const size_t n_pages = UTOP >> 12;
+	// Manual "div round up", so that truncation doesn't lead us to miss pages
+    const size_t n_pdx = (UTOP >> 22) + (UTOP % (1 << 22) == 0 ? 0 : 1);
+	uint32_t this_envx = ENVX(curenv->env_id);
+	struct Env *e;
+	struct Page *pg;
+
+	cprintf("going to evict at all sites.\n");
+	lcr3(PADDR(kern_pgdir));
+	for (uint32_t envx = 0; envx < NENV; envx++) {
+		e = &envs[envx];	
+		if (e->env_status == ENV_FREE) continue;
+		for (unsigned pdx = 0; pdx < n_pdx; pdx++) {
+			if(e->env_pgdir[pdx] & PTE_P) {
+				if (PTE_ADDR(e->env_pgdir[pdx]) == 0x3b303000) {
+					cprintf("wtf.  envx: %x\n", envx);
+					cprintf("npages: %x\n", npages);
+				}
+				pte_t *ptable = (pte_t*)KADDR(PTE_ADDR(e->env_pgdir[pdx]));
+				for(unsigned ptx = 0, tpn = pdx << 10;
+						tpn < n_pages && (tpn >> 10) == pdx; ptx++, tpn++) {
+					if(ptable[ptx] & PTE_P) {
+						// Pages cannot be both present here and remote
+						// somewhere else.
+						// XXX FIXME: why did this fail?
+						//assert(!(ptable[ptx] & PTE_REMOTE));
+						// We have found a match!
+						if (PTE_ADDR(ptable[ptx]) >> PGSHIFT == ppn) {
+							pg = pa2page(ptable[ptx]);
+							if (pg->pp_ref == 0) {
+								page_free(pg);
+								ptable[ptx] = 0;
+							}
+							else {
+								ptable[ptx] &= ~PTE_P;
+								ptable[ptx] |= PTE_REMOTE;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	lcr3(PADDR(curenv->env_pgdir));
+	cprintf("done evicting at all sites.\n");
+}
+
+static int
+sys_page_evict(unsigned ppn) {
+	int r;
+
+	if ((r = sys_page_alloc(0, (uintptr_t)UTEMP, PTE_P | PTE_U | PTE_W)) < 0) {
+		return r;
+	}
+
+	lcr3(PADDR(curenv->env_pgdir));
+	memcpy(UTEMP, KADDR(ppn << PGSHIFT), PGSIZE);
+	lcr3(PADDR(kern_pgdir));
+
+	_sys_evict_at_all_sites(ppn);
+
+	return 0;
+}
+
+//
+// Return values:
+// <0 on failure.
+//  0: page is not mapped in any environment other than curenv.
+//  1: page is mapped in other environment(s), but never writable.
+//  2: page is mapped in other environment(s), and is mapped writable
+//     in at least one environment (possible only this environment)
+//     In this case, sys_page_audit will:
+//     - allocate a new page in the current environment at UTEMP
+//     - copy the contents of the original page to the page at UTEMP
+//     - "evict" all copies of original page in all environments.
+static int
+sys_page_audit(unsigned ppn) {
+	uint32_t this_envx = ENVX(curenv->env_id);
+	struct Env *e;
+
+	int r, check_result;
+
+	check_result = _sys_page_check(ppn);
+	assert (check_result  == 0 || check_result == 1 || check_result == 2);
+	if (check_result == 0 || check_result == 1) {
+		return check_result;
+	}
+		
+	if ((r = sys_page_evict(ppn)) < 0) {
+		return r;
+	}
+	return check_result;
+}
+
+static int
+_sys_remap_at_all_sites(unsigned ppn) {
+	// Only check userland pages.
+	const size_t n_pages = UTOP >> 12;
+	// Manual "div round up", so that truncation doesn't lead us to miss pages
+    const size_t n_pdx = (UTOP >> 22) + (UTOP % (1 << 22) == 0 ? 0 : 1);
+	uint32_t this_envx = ENVX(curenv->env_id);
+	struct Env *e;
+
+	lcr3(PADDR(kern_pgdir));
+	for (uint32_t envx = 0; envx < NENV; envx++) {
+		e = &envs[envx];	
+		if (e->env_status == ENV_FREE) continue;
+		for (unsigned pdx = 0; pdx < n_pdx; pdx++) {
+			if(e->env_pgdir[pdx] & PTE_P) {
+				pte_t *ptable = (pte_t*)KADDR(PTE_ADDR(e->env_pgdir[pdx]));
+				for(unsigned ptx = 0, tpn = pdx << 10;
+						tpn < n_pages && (tpn >> 10) == pdx; ptx++, tpn++) {
+					// We have found a match!
+					if (PTE_ADDR(ptable[ptx]) >> PGSHIFT == ppn) {
+						// If we're remapping this page, it shouldn't
+						// already be present.
+						assert(!(ptable[ptx] & PTE_P));
+						ptable[ptx] |= PTE_P;
+						ptable[ptx] &= ~PTE_REMOTE;
+					}
+				}
+			}
+		}
+	}
+	lcr3(PADDR(curenv->env_pgdir));
+
+	return 0;
+}
+
+static int
+sys_page_recover(unsigned ppn) {
+	memcpy(KADDR(ppn << PGSHIFT), UTEMP, PGSIZE);
+
+	_sys_remap_at_all_sites(ppn);
+
+	sys_page_unmap(0, (uintptr_t)UTEMP);
+
+	return 0;
 }
 
 
@@ -585,6 +787,10 @@ syscall(uint32_t syscallno, uint32_t a1, uint32_t a2, uint32_t a3, uint32_t a4, 
         case SYS_env_set_trapframe: return sys_env_set_trapframe((envid_t) a1, (uintptr_t) a2);
         case SYS_e1000_transmit: return sys_e1000_transmit((uintptr_t)a1, (size_t)a2); 
         case SYS_e1000_receive: return sys_e1000_receive((uintptr_t)a1);
+		case SYS_page_evict: return sys_page_evict(a1);
+		case SYS_page_audit: return sys_page_audit(a1);
+		case SYS_page_recover: return sys_page_recover(a1);
+		case SYS_page_alloc_exists_on_remote: return sys_page_alloc_exists_on_remote(a1, a2, a3);
         default: return -E_INVAL;
     }
 }
