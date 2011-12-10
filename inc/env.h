@@ -40,6 +40,7 @@ enum {
 #define ENVID_BUFCACHE		0x1100
 #define ENVID_NS		    0x1101
 #define ENVID_MIGRATED      0x1102
+#define ENVID_MIGRATE_CLIENT 0x1103
 
 struct Env {
 	struct Env *env_link;		// Next env on the free list
