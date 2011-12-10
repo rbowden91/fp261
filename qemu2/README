@@ -1,1 +1,0 @@
-Need to change jif/jif.c and kern/e1000.c to use "57" as last byte in mac address
