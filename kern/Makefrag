@@ -57,6 +57,7 @@ KERN_BINFILES :=	user/idle \
 			net/testinput \
 			net/ns \
 			user/migrated \
+			user/migrate_client \
 			user/testmigrate
 			
 

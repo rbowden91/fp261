@@ -130,6 +130,20 @@ i386_init(void)
     ENV_CREATE(user_migrated);
     //ENV_CREATE(user_testmigrate);
 
+    {
+	    extern struct Env *env_free_list;
+    	struct Env **pprev = &env_free_list, *bce = 0;
+		for (bce = 0; *pprev; pprev = &(*pprev)->env_link)
+			if (*pprev == &envs[ENVX(ENVID_MIGRATE_CLIENT)]) {
+				struct Env *e = *pprev;
+				*pprev = e->env_link;
+				e->env_link = env_free_list;
+				env_free_list = e;
+				break;
+			}
+    }
+    ENV_CREATE(user_migrate_client);
+
     // Schedule and run a user environment!
 	// We want to run the bufcache first.
 	env_run(&envs[ENVX(ENVID_BUFCACHE)]);
