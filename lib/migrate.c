@@ -7,6 +7,203 @@
 // it should be protected.
 #define VA_OF_VPN(vpn) ((vpn) << 12)
 
+#define PTE_REMOTE 0x400 // XXX FIXME: duplicated in kern/pmap.h
+
+int
+migrate_client_open_write_pipe(uint32_t network_addr) {
+	int r, p[2];
+	if ((r = pipe(p)) < 0) {
+		return r;
+	}
+
+	// Hook up the read end of our pipe to migrated
+	if ((r = pipe_ipc_send(ENVID_MIGRATE_CLIENT, p[0])) < 0) 	{
+		close(p[0]);
+		close(p[1]);
+		return r;
+	}
+
+	// XXX: should I actually close this?
+	close(p[0]);
+	return p[1];
+}
+
+int
+migrate_client_open_read_pipe(uint32_t network_addr) {
+	envid_t envid;
+	return pipe_ipc_recv_read(&envid);
+}
+
+int
+migrate_request_page(physaddr_t local_physaddr, uint32_t network_addr,
+						physaddr_t remote_physaddr) {
+	int r, f;
+	if ((f = migrate_client_open_write_pipe(network_addr)) < 0) {
+		return f;
+	}
+
+	struct MigratePageRequest request;
+	request.mpr_magic = MIGRATE_PG_REQUEST_MAGIC;
+	request.mpr_src_envid = thisenv->env_id;
+	request.mpr_physaddr = remote_physaddr;
+	request.mpr_physaddr_on_requesting_machine = local_physaddr;
+
+	if ((r = write(f, &request, sizeof(struct MigratePageRequest)))
+			!= sizeof(struct MigratePageRequest)) {
+		return r < 0 ? r : -E_IO;
+	}
+	close(f);
+
+	if ((f = migrate_client_open_read_pipe(network_addr)) < 0) {
+		return f;
+	}
+
+	cprintf("migrate_request_page: succesfully opened ipc\n");
+
+	struct MigratePageRequestResponseHeader response;
+	if ((r = read(f, &response,sizeof(struct MigratePageRequestResponseHeader)))
+			!= sizeof(struct MigratePageRequestResponseHeader)) {
+		cprintf("die 1\n");
+		return r < 0 ? r : -E_IO;
+	}
+	
+	if (response.mprr_magic != MIGRATE_PG_REQUEST_RESPONSE_MAGIC
+			|| response.mprr_physaddr != local_physaddr) {
+		cprintf("die 2\n");
+		return -E_IO;
+	}
+
+	if ((r = sys_page_alloc(0, UTEMP, PTE_P | PTE_U | PTE_W)) < 0) {
+		return r;
+	}
+	for (int i = 0; i < 4; i++) {
+		if ((r = readn(f, (char *)UTEMP + PGSIZE / 4 * i, PGSIZE/4)) != PGSIZE/4) {
+			cprintf("die 4. r: %x\n", r);
+			return r < 0 ? r : -E_IO;
+		}
+	}
+
+	return 0;
+}
+
+int
+migrate_recover_page(physaddr_t local_physaddr, uint32_t network_addr,
+					 physaddr_t remote_physaddr) {
+	// Step 1) Send an IPC to migrate_client requesting the page.  Receive
+	//         it at a freshly allocate page at UTEMP.
+	// Step 2) Copy this page from UTEMP back to physaddr
+	int r = migrate_request_page(local_physaddr, network_addr, remote_physaddr);
+	if (r < 0) {
+		return r;
+	}
+
+	return sys_page_recover(local_physaddr >> PGSHIFT);
+}
+
+int
+migrate_recover_remote_page(uintptr_t addr) {
+	if (!(vpd[PDX(addr)] & PTE_P))
+		return -E_INVAL;
+	pte_t pte = vpt[PGNUM(addr)];
+	const volatile struct Page *pg = &pages[PGNUM(pte)];
+	return migrate_recover_page(PTE_ADDR(pte),
+								pg->pp_remote_network_addr,
+								pg->pp_remote_page_physaddr);
+}
+
+void
+migrate_shared_page_fault_handler(struct UTrapframe *utf) {
+	if(utf == NULL)
+		panic("utf is null!");
+	
+	cprintf("OMG OMG OMG\n");
+	uintptr_t addr = utf->utf_fault_va;
+
+	if (!(vpd[PDX(addr)] & PTE_P))
+		return;
+	pte_t pte = vpt[PGNUM(addr)];
+
+	if (pte & PTE_REMOTE) {
+		if (migrate_recover_remote_page(addr) < 0) {
+			return;
+		}
+		else {
+			resume(utf);
+		}
+	}
+	return;
+}
+
+int
+migrate_process_page_request(int f) {
+	int r;
+	struct MigratePageRequest request;
+	// If we got here, then user/migrated.c already read MIGRATE_MAGIC
+	if ((r = readn(f, ((char*)&request)+4, sizeof(struct MigratePageRequest)-4))
+			!= sizeof(struct MigratePageRequest)-4) {
+		cprintf("MIGRATED: migrate_process_page_request: read header failed\n");
+		return (r < 0) ? r : -E_IO;
+	}
+
+	if ((r = sys_page_evict(request.mpr_physaddr >> PGSHIFT)) < 0) {
+		cprintf("migrated: migrate_proc_pg_req: evict failed\n");
+		return r;
+	}
+
+	int p[2];
+	if ((r = pipe(p)) < 0) {
+		cprintf("migrated: migrate_proc_pg_req: pipe failed\n");
+		return r;
+	}
+	if ((r = pipe_ipc_send(ENVID_MIGRATE_CLIENT, p[0])) < 0) {
+		cprintf("migrated: migrate_proc_pg_req: pipe_ipc_send failed\n");
+		return r;
+	}
+	close(p[0]);
+	int wf = p[1];
+
+	cprintf("set up a pipe ipc with migrate client.  trying to send page.\n");
+	struct MigrateResponseHeader response_header;
+	response_header.mr_magic = MIGRATE_RESPONSE_MAGIC;
+	cprintf("migrate daemon: mpr_src_envid: %d\n", request.mpr_src_envid);
+	assert(request.mpr_src_envid != 0);
+	response_header.mr_recipient_envid = request.mpr_src_envid;
+	if ((r = write(wf, &response_header, sizeof(struct MigrateResponseHeader)))
+			!= sizeof(struct MigrateResponseHeader)) {
+		sys_page_unmap(0, UTEMP);
+		return (r < 0) ? r : -E_IO;
+	}
+	cprintf("sent response header.\n");
+
+	struct MigratePageRequestResponseHeader page_request_response_header;
+	page_request_response_header.mprr_magic =
+		MIGRATE_PG_REQUEST_RESPONSE_MAGIC;
+	page_request_response_header.mprr_physaddr =
+		request.mpr_physaddr_on_requesting_machine;
+	if ((r = write(wf, &page_request_response_header,
+					sizeof(struct MigratePageRequestResponseHeader)))
+			!= sizeof(struct MigratePageRequestResponseHeader)) {
+		sys_page_unmap(0, UTEMP);
+		return (r < 0) ? r : -E_IO;
+	}
+	cprintf("sent page request response header\n");
+
+	// Send the page itself.
+	for (int i = 0; i < 4; i++)
+	{
+		if ((r = write(wf, (char *)UTEMP + PGSIZE / 4 * i, PGSIZE/4)) != PGSIZE/4) {
+			sys_page_unmap(0, UTEMP);
+			return r < 0 ? r : -E_IO;
+		}
+		return (r < 0) ? r : -E_IO;
+	}
+	cprintf("sent page itself\n");
+
+	sys_page_unmap(0, UTEMP);
+	cprintf("MIGRATED: migrate_process_page_request: done\n");
+	return 0;
+}
+
 /*
  * Pre-condition: f is the file descriptor number of an open file descriptor.
  * The caller is responsible for closing this file.
