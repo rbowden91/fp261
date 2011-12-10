@@ -74,10 +74,12 @@ int sys_e1000_transmit(void *buffer, size_t len);
 size_t sys_e1000_receive(void *buffer);
 int sys_page_evict(unsigned ppn);
 int sys_page_audit(unsigned ppn);
-int sys_page_recover(unsigned ppn);
-int sys_page_alloc_exists_on_remote(envid_t envid, void *va, int perm);
+int sys_page_recover(unsigned ppn, physaddr_t remote_pa);
+int sys_page_alloc_exists_on_remote(envid_t envid, void *va, int perm,
+									physaddr_t pa);
 int sys_get_network_connection(int *writesock, int *readsock);
 int sys_set_network_connection(int writesock, int readsock);
+size_t sys_get_npages();
 
 #define THISENV (&envs[ENVX(sys_getenvid())])
 

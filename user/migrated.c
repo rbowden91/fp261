@@ -114,8 +114,10 @@ umain(int argc, char **argv)
 				// Done with this pipe.
 				close(p[0]);
 				close(p[1]);
+				break;
 			default:
 				panic("migrated: buffer word is not magic: %x", buffer_word);
+				break;
 		}
 	}
 }

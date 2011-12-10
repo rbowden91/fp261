@@ -197,7 +197,8 @@ sys_env_set_trapframe(envid_t envid, uintptr_t tf_ptr)
 }
 
 static int
-_sys_page_alloc(envid_t envid, uintptr_t va, int perm, bool exists_on_remote)
+_sys_page_alloc(envid_t envid, uintptr_t va, int perm, bool exists_on_remote,
+		physaddr_t remote_pa)
 {
 	// Hint: This function is a wrapper around page_alloc() and
 	//   page_insert() from kern/pmap.c.
@@ -220,6 +221,9 @@ _sys_page_alloc(envid_t envid, uintptr_t va, int perm, bool exists_on_remote)
     Page *p;
     if (!(p = page_alloc()))
         return -E_NO_MEM;
+
+	p->pp_exists_on_remote_machine = exists_on_remote;
+	if (exists_on_remote) p->pp_remote_page_physaddr = remote_pa;
 
     // if we fail to insert, we have to free the page we just allocated
     if (page_insert(env->env_pgdir, p, va, perm))
@@ -251,11 +255,12 @@ _sys_page_alloc(envid_t envid, uintptr_t va, int perm, bool exists_on_remote)
 //		or to allocate any necessary page tables.
 static int
 sys_page_alloc(envid_t envid, uintptr_t va, int perm) {
-	return _sys_page_alloc(envid, va, perm, false);
+	return _sys_page_alloc(envid, va, perm, false, 0);
 }
 static int
-sys_page_alloc_exists_on_remote(envid_t envid, uintptr_t va, int perm) {
-	return _sys_page_alloc(envid, va, perm, true);
+sys_page_alloc_exists_on_remote(envid_t envid, uintptr_t va, int perm,
+		physaddr_t remote_pa) {
+	return _sys_page_alloc(envid, va, perm, true, remote_pa);
 }
 
 // Map the page of memory at 'srcva' in srcenvid's address space
@@ -519,9 +524,12 @@ _sys_remap_at_all_sites(unsigned ppn) {
 }
 
 static int
-sys_page_recover(unsigned ppn) {
-	memcpy(KADDR(ppn << PGSHIFT), UTEMP, PGSIZE);
+sys_page_recover(unsigned ppn, physaddr_t remote_pa) {
+	physaddr_t local_paddr = ppn << PGSHIFT;
+	memcpy(KADDR(local_paddr), UTEMP, PGSIZE);
 
+	struct Page *pg = pa2page(local_paddr);		
+	pg->pp_remote_page_physaddr = remote_pa;
 	_sys_remap_at_all_sites(ppn);
 
 	sys_page_unmap(0, (uintptr_t)UTEMP);
@@ -827,10 +835,11 @@ syscall(uint32_t syscallno, uint32_t a1, uint32_t a2, uint32_t a3, uint32_t a4, 
         case SYS_e1000_receive: return sys_e1000_receive((uintptr_t)a1);
 		case SYS_page_evict: return sys_page_evict(a1);
 		case SYS_page_audit: return sys_page_audit(a1);
-		case SYS_page_recover: return sys_page_recover(a1);
-		case SYS_page_alloc_exists_on_remote: return sys_page_alloc_exists_on_remote(a1, a2, a3);
+		case SYS_page_recover: return sys_page_recover(a1, a2);
+		case SYS_page_alloc_exists_on_remote: return sys_page_alloc_exists_on_remote(a1, a2, a3, a4);
 		case SYS_get_network_connection: return sys_get_network_connection((int *)a1, (int *)a2);
 		case SYS_set_network_connection: return sys_set_network_connection(a1, a2);
+		case SYS_get_npages: return npages;
         default: return -E_INVAL;
     }
 }

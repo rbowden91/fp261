@@ -36,7 +36,7 @@ migrate_client_open_read_pipe(uint32_t network_addr) {
 
 int
 migrate_request_page(physaddr_t local_physaddr, uint32_t network_addr,
-						physaddr_t remote_physaddr) {
+						physaddr_t *remote_physaddr_store) {
 	int r, f;
 	if ((f = migrate_client_open_write_pipe(network_addr)) < 0) {
 		return f;
@@ -45,7 +45,6 @@ migrate_request_page(physaddr_t local_physaddr, uint32_t network_addr,
 	struct MigratePageRequest request;
 	request.mpr_magic = MIGRATE_PG_REQUEST_MAGIC;
 	request.mpr_src_envid = thisenv->env_id;
-	request.mpr_physaddr = remote_physaddr;
 	request.mpr_physaddr_on_requesting_machine = local_physaddr;
 
 	if ((r = write(f, &request, sizeof(struct MigratePageRequest)))
@@ -87,22 +86,24 @@ migrate_request_page(physaddr_t local_physaddr, uint32_t network_addr,
 	}
 	cprintf("read all sections of page\n");
 
+	*remote_physaddr_store = response.mprr_physaddr_on_sending_machine;
+
 	return 0;
 }
 
 int
-migrate_recover_page(physaddr_t local_physaddr, uint32_t network_addr,
-					 physaddr_t remote_physaddr) {
+migrate_recover_page(physaddr_t local_physaddr, uint32_t network_addr) {
 	// Step 1) Send an IPC to migrate_client requesting the page.  Receive
 	//         it at a freshly allocate page at UTEMP.
 	// Step 2) Copy this page from UTEMP back to physaddr
-	int r = migrate_request_page(local_physaddr, network_addr, remote_physaddr);
+	physaddr_t remote_pa;
+	int r = migrate_request_page(local_physaddr, network_addr, &remote_pa);
 	if (r < 0) {
 		return r;
 	}
 
 	cprintf("recovering all sections of page.\n");
-	return sys_page_recover(local_physaddr >> PGSHIFT);
+	return sys_page_recover(local_physaddr >> PGSHIFT, remote_pa);
 }
 
 int
@@ -112,8 +113,7 @@ migrate_recover_remote_page(uintptr_t addr) {
 	pte_t pte = vpt[PGNUM(addr)];
 	const volatile struct Page *pg = &pages[PGNUM(pte)];
 	return migrate_recover_page(PTE_ADDR(pte),
-								pg->pp_remote_network_addr,
-								pg->pp_remote_page_physaddr);
+								pg->pp_remote_network_addr);
 }
 
 void
@@ -151,7 +151,21 @@ migrate_process_page_request(int f) {
 		return (r < 0) ? r : -E_IO;
 	}
 
-	if ((r = sys_page_evict(request.mpr_physaddr >> PGSHIFT)) < 0) {
+	bool found = false;
+	physaddr_t local_pa;
+	size_t npages = sys_get_npages();
+	for (size_t i = 0; i < npages; i++) {
+		if(pages[i].pp_exists_on_remote_machine
+				&& pages[i].pp_remote_page_physaddr ==
+					request.mpr_physaddr_on_requesting_machine) {
+			local_pa = i << PGSHIFT;
+			found = true;
+			break;
+		}
+	}
+	if (!found) return -E_INVAL;
+
+	if ((r = sys_page_evict(local_pa >> PGSHIFT)) < 0) {
 		cprintf("migrated: migrate_proc_pg_req: evict failed\n");
 		return r;
 	}
@@ -186,6 +200,7 @@ migrate_process_page_request(int f) {
 		MIGRATE_PG_REQUEST_RESPONSE_MAGIC;
 	page_request_response_header.mprr_physaddr =
 		request.mpr_physaddr_on_requesting_machine;
+	page_request_response_header.mprr_physaddr_on_sending_machine = local_pa;
 	if ((r = write(wf, &page_request_response_header,
 					sizeof(struct MigratePageRequestResponseHeader)))
 			!= sizeof(struct MigratePageRequestResponseHeader)) {
@@ -250,9 +265,18 @@ migrate_spawn(int f) {
 			goto cleanup;
 		}
 
-		if ((r = sys_page_alloc(0, UTEMP, PTE_P | PTE_U | PTE_W)) < 0) {
-			panic("migrate_spawn: alloc page at UTEMP: %e\n", r);
-			goto cleanup;
+		if (h.mph_mapped_on_remote_src) {
+			if ((r = sys_page_alloc_exists_on_remote(0,
+						UTEMP, PTE_P | PTE_U | PTE_W, h.mph_pa_on_src)) < 0) {
+				panic("migrate_spawn: alloc page at UTEMP: %e\n", r);
+				goto cleanup;
+			}
+		}
+		else {
+			if ((r = sys_page_alloc(0, UTEMP, PTE_P | PTE_U | PTE_W)) < 0) {
+				panic("migrate_spawn: alloc page at UTEMP: %e\n", r);
+				goto cleanup;
+			}
 		}
         for(int i = 0; i < 4; i++)
         {
@@ -366,21 +390,25 @@ migrate_send_state(int f, struct Trapframe *tf) {
 					audit_r = sys_page_audit(PTE_ADDR(vpt[pn]) >> PGSHIFT);
 					if (audit_r < 0) return audit_r;
 
-					if ((r = write(f, &h, sizeof(struct MigratePageHeader)))
-							!= sizeof(struct MigratePageHeader)) {
-						return r < 0 ? r : -E_IO;
-					}
-
 					// If the page is either not shared or not writable
 					// anywhere, we can just send it over the wire.
 					if (audit_r == 0 || audit_r == 1) {
 						addr_to_use = (char *)h.mph_addr;
+						h.mph_mapped_on_remote_src = false;
 					}
 					// If the page is shared and writable somewhere, audit
 					// evicted it and put it in UTEMP.
 					else {
 						addr_to_use = (char *)UTEMP;
+						h.mph_mapped_on_remote_src = true;
+						h.mph_pa_on_src = PTE_ADDR(vpt[pn]);
 					}
+
+					if ((r = write(f, &h, sizeof(struct MigratePageHeader)))
+							!= sizeof(struct MigratePageHeader)) {
+						return r < 0 ? r : -E_IO;
+					}
+
 					for(int i = 0; i < 4; i++)
 					{
 						if ((r = write(f, addr_to_use + PGSIZE / 4 * i, PGSIZE/4)) != PGSIZE/4) {

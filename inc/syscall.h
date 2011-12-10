@@ -29,6 +29,7 @@ enum {
 	SYS_page_alloc_exists_on_remote,
 	SYS_get_network_connection,
 	SYS_set_network_connection,
+	SYS_get_npages,
 	NSYSCALLS
 };
 

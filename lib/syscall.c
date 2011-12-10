@@ -165,13 +165,14 @@ sys_page_audit(unsigned ppn) {
 }
 
 int
-sys_page_recover(unsigned ppn) {
-	return syscall(SYS_page_recover, 0, ppn, 0, 0, 0, 0);
+sys_page_recover(unsigned ppn, physaddr_t remote_pa) {
+	return syscall(SYS_page_recover, 0, ppn, remote_pa, 0, 0, 0);
 }
 
-int sys_page_alloc_exists_on_remote(envid_t envid, void *va, int perm)
+int sys_page_alloc_exists_on_remote(envid_t envid, void *va, int perm,
+			physaddr_t pa)
 {
-	return syscall(SYS_page_alloc_exists_on_remote, 0, envid, (uint32_t) va, perm, 0, 0);
+	return syscall(SYS_page_alloc_exists_on_remote, 0, envid, (uint32_t) va, perm, pa, 0);
 }
 
 int sys_get_network_connection(int *writesock, int *readsock) {
@@ -180,4 +181,8 @@ int sys_get_network_connection(int *writesock, int *readsock) {
 }
 int sys_set_network_connection(int writesock, int readsock) {
 	return syscall(SYS_set_network_connection, 0, writesock, readsock,0,0,0);
+}
+
+size_t sys_get_npages() {
+	return syscall(SYS_get_npages, 0, 0,0,0,0,0);
 }

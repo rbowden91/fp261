@@ -32,13 +32,13 @@ struct MigratePageHeader {
 	uint32_t mph_magic; // must equal MIGRATE_PG_MAGIC
 	void *mph_addr;
 	int mph_perm;
-	bool mph_mapped_remote_src; // for Page.pp_exists_on_remote_machine
+	bool mph_mapped_on_remote_src; // for Page.pp_exists_on_remote_machine
+	physaddr_t mph_pa_on_src;
 }__attribute__((packed));
 
 struct MigratePageRequest {
 	uint32_t mpr_magic; // must equal MIGRATE_PG_REQUEST_MAGIC
 	envid_t mpr_src_envid;
-	physaddr_t mpr_physaddr;
 	physaddr_t mpr_physaddr_on_requesting_machine;
 }__attribute__((packed));
 
@@ -51,6 +51,7 @@ struct MigrateResponseHeader {
 struct MigratePageRequestResponseHeader {
 	uint32_t mprr_magic; // must equal MIGRATE_PG_REQUEST_RESPONSE_MAGIC
 	physaddr_t mprr_physaddr;
+	physaddr_t mprr_physaddr_on_sending_machine;
 }__attribute__((packed));
 
 int migrate_spawn(int f);
