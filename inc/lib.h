@@ -72,6 +72,10 @@ ssize_t	sys_program_read(envid_t dst_env, void *pg, int programid, size_t offset
 unsigned 	sys_time_msec(void);
 int sys_e1000_transmit(void *buffer, size_t len);
 size_t sys_e1000_receive(void *buffer);
+int sys_page_evict(unsigned ppn);
+int sys_page_audit(unsigned ppn);
+int sys_page_recover(unsigned ppn);
+int sys_page_alloc_exists_on_remote(envid_t envid, void *va, int perm);
 
 #define THISENV (&envs[ENVX(sys_getenvid())])
 
@@ -160,11 +164,14 @@ int	opencons(void);
 // pipe.c
 int	pipe(int pipefds[2]);
 int	pipeisclosed(int pipefd);
-int pipe_ipc_recv_read();
+int pipe_ipc_recv_read(envid_t *from_envid);
 int pipe_ipc_send(envid_t envid, int read_fdnum);
 
 // wait.c
 void	wait(envid_t env);
+
+// migrate.c
+void migrate_shared_page_fault_handler(struct UTrapframe *utf);
 
 // File open modes
 #define	O_RDONLY	0x0000		// open for reading only
