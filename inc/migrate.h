@@ -23,6 +23,7 @@
 
 struct MigrateSuperHeader {
 	uint32_t msh_magic; // must equal MIGRATE_MAGIC
+	uintptr_t msh_pgfault_upcall;
 	uint32_t msh_n_pages;
 	struct Trapframe msh_tf;
 }__attribute__((packed));
