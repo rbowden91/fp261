@@ -27,6 +27,8 @@ enum {
 	SYS_page_evict,
 	SYS_page_audit,
 	SYS_page_alloc_exists_on_remote,
+	SYS_get_network_connection,
+	SYS_set_network_connection,
 	NSYSCALLS
 };
 

@@ -55,7 +55,7 @@ struct MigratePageRequestResponseHeader {
 
 int migrate_spawn(int f);
 int migrate_locally(void (*callback)(void));
-void migrate_label();
+int migrate();
 
 
 

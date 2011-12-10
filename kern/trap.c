@@ -445,7 +445,6 @@ page_fault_handler(struct Trapframe *tf)
     memcpy(trap_addr, &tf->tf_regs, sizeof(tf->tf_regs));
     *(trap_addr - 1) = tf->tf_err;
     *(trap_addr - 2) = fault_va;
-    cprintf("%x ropjs\n", tf->tf_eip);
     tf->tf_esp = (uint32_t)(trap_addr - 3);
     tf->tf_eip = curenv->env_pgfault_upcall;
     return;

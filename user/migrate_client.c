@@ -11,13 +11,14 @@ umain(int argc, char **argv)
 {
 	char buf[BUFSIZE];
 	assert(thisenv->env_id == ENVID_MIGRATE_CLIENT);
-	int f, amount_read, r, p[2];
+	int f, amount_read, r;
 	envid_t from_env;
 	uint32_t word_buf;
     int writesock, readsock;
 
-    if(mach_connect(&writesock, &readsock) < 0)
-        panic("Could not connect with remote machine");
+	while (sys_get_network_connection(&writesock, &readsock) < 0) {
+		sys_yield();
+	}
 	int ws = writesock;
 
 	cprintf("migrate client is running\n");
@@ -25,17 +26,12 @@ umain(int argc, char **argv)
 		cprintf("migrate client: waiting for pipe ipc\n");
 		f = pipe_ipc_recv_read(&from_env);
 		if (f < 0) panic("pipe_ipc_recv_read: %e", f);
-
-		if ((r = pipe(p)) < 0) {
-			panic("pipe: %e", r);
-		}
-
-		if ((r = pipe_ipc_send(ENVID_MIGRATED, p[0])) < 0) 	{
-			panic("migrate client: pipe_ipc_send: %e", r);
-		}
+		cprintf("migrate client: got pipe ipc\n");
 
 		/* Read from f and write to p[1], until EOF. */
 		while ((amount_read = read(f, &buf, BUFSIZE)) > 0) {
+			cprintf("reading %d bytes\n", amount_read);
+			cprintf("ws: %d\n", ws);
 			if ((r = write(ws, &buf, amount_read)) != amount_read) {
 				panic("migrate client: write: %e", (r < 0 ? r : -E_IO));
 			}
@@ -45,8 +41,6 @@ umain(int argc, char **argv)
 		}
 		
 		// Otherwise, we've succeeded, but we've reached EOF.
-		close(p[0]);
-		close(p[1]);
 		close(f);
 	}
 }

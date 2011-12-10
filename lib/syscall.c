@@ -171,5 +171,13 @@ sys_page_recover(unsigned ppn) {
 
 int sys_page_alloc_exists_on_remote(envid_t envid, void *va, int perm)
 {
-	return syscall(SYS_page_alloc_exists_on_remote, 1, envid, (uint32_t) va, perm, 0, 0);
+	return syscall(SYS_page_alloc_exists_on_remote, 0, envid, (uint32_t) va, perm, 0, 0);
+}
+
+int sys_get_network_connection(int *writesock, int *readsock) {
+	return syscall(SYS_get_network_connection, 0,
+			(uint32_t)writesock, (uint32_t)readsock,0,0,0);
+}
+int sys_set_network_connection(int writesock, int readsock) {
+	return syscall(SYS_set_network_connection, 0, writesock, readsock,0,0,0);
 }

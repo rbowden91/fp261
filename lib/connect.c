@@ -9,24 +9,21 @@
 #define FROMPORT1 1234
 #define FROMPORT2 1236
 
-static int to_mach_sock = -1, from_mach_sock = -1;
-
 int
 mach_connect(int *writesock, int *readsock)
 {
 	struct sockaddr_in server;
+	int to_mach_sock = -1, from_mach_sock = -1;
 
     if(!(writesock && readsock))
         return -1;
 
+	int r;
     // for now, only one connection is allowed, so if it has already been made
     // return it
-    if(to_mach_sock != -1)
-    {
-        *writesock = to_mach_sock;
-        *readsock = from_mach_sock;
-        return 0;
-    }
+	if ((r = sys_get_network_connection(writesock, readsock)) >= 0) {
+		return 0;
+	}
 
     for (int i = 0; i < 2; i++)
     {
@@ -64,7 +61,8 @@ mach_connect(int *writesock, int *readsock)
             case 3: to_mach_sock = sock; break;
         }
     }
-    *writesock = to_mach_sock;
-    *readsock = from_mach_sock;
+	sys_set_network_connection(to_mach_sock, from_mach_sock);
+	*writesock = to_mach_sock;
+	*readsock = from_mach_sock;
     return 0;
 }

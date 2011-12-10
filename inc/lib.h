@@ -76,6 +76,8 @@ int sys_page_evict(unsigned ppn);
 int sys_page_audit(unsigned ppn);
 int sys_page_recover(unsigned ppn);
 int sys_page_alloc_exists_on_remote(envid_t envid, void *va, int perm);
+int sys_get_network_connection(int *writesock, int *readsock);
+int sys_set_network_connection(int writesock, int readsock);
 
 #define THISENV (&envs[ENVX(sys_getenvid())])
 

@@ -18,8 +18,13 @@ umain(int argc, char **argv) {
 		}
 		cprintf("CHILD: going to migrate locally\n");
 		cprintf("CHILD: physical pg num: %x\n", PGNUM(vpt[PGNUM(addr)]));
-		int r = migrate_locally(&a);
-		panic("CHILD: migrate_locally: %e\n");
+		int *addr_int = (int *)addr;
+		addr_int[1] = 55;
+		int r = migrate();
+		cprintf("[%08x]: Hello from your migrated process!\n", thisenv->env_id);
+		cprintf("addr_int[0] = %d, addr_int[1] = %d\n",
+				addr_int[0], addr_int[1]);
+		return;
 	}
 	else {
 		envid_t envid = (envid_t)r;
@@ -30,13 +35,17 @@ umain(int argc, char **argv) {
 			panic("sys_page_map");
 		cprintf("XXX LA LA LA: mapped a shared page.\n");
 		cprintf("XXX LA LA LA: physical pg num: %x\n", PGNUM(vpt[PGNUM(addr)]));
-		for (int i = 0; i < 10000; i++) {
+		int *addr_int = (int *)addr;
+		addr_int[0] = 60;
+		for (int i = 0; i < 6000; i++) {
 			sys_yield();
 		}
-		int *addr_int = (int *)addr;
 		cprintf("TRYING TO WRITE TO THE PAGE THAT GOT MIGRATED AWAY\n");
-		*addr_int = 42;
+		addr_int[2] = 42;
 		cprintf("SUCCESSFULLY WROTE TO THE PAGE THAT GOT MIGRATED AWAY\n");
+		cprintf("AND THE ANSWER IS: %d\n", addr_int[0]);
+		cprintf("AND THE ANSWER IS: %d\n", addr_int[1]);
+		cprintf("AND THE ANSWER IS: %d\n", addr_int[2]);
 		while (1) sys_yield() ;
 	}
 }

@@ -128,8 +128,8 @@ i386_init(void)
 			}
     }
     ENV_CREATE(user_migrated);
-    //ENV_CREATE(user_testmigrate);
 
+	/*
     {
 	    extern struct Env *env_free_list;
     	struct Env **pprev = &env_free_list, *bce = 0;
@@ -143,6 +143,9 @@ i386_init(void)
 			}
     }
     ENV_CREATE(user_migrate_client);
+	*/
+
+    ENV_CREATE(user_testmigrate);
 
     // Schedule and run a user environment!
 	// We want to run the bufcache first.

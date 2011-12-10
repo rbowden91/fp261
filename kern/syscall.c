@@ -87,6 +87,21 @@ sys_exofork(void)
 	// sys_exofork will appear to return 0 there.
 
 	// LAB 3: Your code here.
+	
+	// If we're the migrate daemon, fork the migrate client 
+	if (curenv->env_id == ENVID_MIGRATED) {
+	    extern struct Env *env_free_list;
+    	struct Env **pprev = &env_free_list, *bce = 0;
+		for (bce = 0; *pprev; pprev = &(*pprev)->env_link)
+			if (*pprev == &envs[ENVX(ENVID_MIGRATE_CLIENT)]) {
+				struct Env *e = *pprev;
+				*pprev = e->env_link;
+				e->env_link = env_free_list;
+				env_free_list = e;
+				break;
+			}
+    }
+
     Env *new_env;
     int r;
     if((r = env_alloc(&new_env, curenv->env_id)))
@@ -758,6 +773,29 @@ sys_e1000_receive(uintptr_t buffer)
     return e1000_receive((void *)buffer);
 }
 
+static int to_mach_sock = -1, from_mach_sock = -1;
+
+static int
+sys_get_network_connection(int *writesock, int *readsock) {
+	if (to_mach_sock == -1 || from_mach_sock == -1) {
+		return -1;
+	}
+	user_mem_assert(curenv, (uintptr_t)writesock, sizeof(int), PTE_U | PTE_P);
+	user_mem_assert(curenv, (uintptr_t)readsock, sizeof(int), PTE_U | PTE_P);
+
+	*writesock = to_mach_sock;
+	*readsock = from_mach_sock;
+	return 0;
+}
+
+static int
+sys_set_network_connection(int writesock, int readsock) {
+	cprintf("YES YES YES WE ARE HERE OMGO OMGASDFADHSLFAHSD\n");
+	to_mach_sock = writesock;
+	from_mach_sock = readsock;
+	return 0;
+}
+
 // Dispatches to the correct kernel function, passing the arguments.
 int32_t
 syscall(uint32_t syscallno, uint32_t a1, uint32_t a2, uint32_t a3, uint32_t a4, uint32_t a5)
@@ -791,6 +829,8 @@ syscall(uint32_t syscallno, uint32_t a1, uint32_t a2, uint32_t a3, uint32_t a4, 
 		case SYS_page_audit: return sys_page_audit(a1);
 		case SYS_page_recover: return sys_page_recover(a1);
 		case SYS_page_alloc_exists_on_remote: return sys_page_alloc_exists_on_remote(a1, a2, a3);
+		case SYS_get_network_connection: return sys_get_network_connection((int *)a1, (int *)a2);
+		case SYS_set_network_connection: return sys_set_network_connection(a1, a2);
         default: return -E_INVAL;
     }
 }

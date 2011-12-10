@@ -67,21 +67,25 @@ migrate_request_page(physaddr_t local_physaddr, uint32_t network_addr,
 		return r < 0 ? r : -E_IO;
 	}
 	
+	cprintf("migrate_request_page: read pagequestresponseheader\n");
 	if (response.mprr_magic != MIGRATE_PG_REQUEST_RESPONSE_MAGIC
 			|| response.mprr_physaddr != local_physaddr) {
 		cprintf("die 2\n");
 		return -E_IO;
 	}
+	cprintf("migrate_request_page: header is intact\n");
 
 	if ((r = sys_page_alloc(0, UTEMP, PTE_P | PTE_U | PTE_W)) < 0) {
 		return r;
 	}
 	for (int i = 0; i < 4; i++) {
+		cprintf("migrate_request_page: reading page section %d\n", i);
 		if ((r = readn(f, (char *)UTEMP + PGSIZE / 4 * i, PGSIZE/4)) != PGSIZE/4) {
 			cprintf("die 4. r: %x\n", r);
 			return r < 0 ? r : -E_IO;
 		}
 	}
+	cprintf("read all sections of page\n");
 
 	return 0;
 }
@@ -97,6 +101,7 @@ migrate_recover_page(physaddr_t local_physaddr, uint32_t network_addr,
 		return r;
 	}
 
+	cprintf("recovering all sections of page.\n");
 	return sys_page_recover(local_physaddr >> PGSHIFT);
 }
 
@@ -128,6 +133,7 @@ migrate_shared_page_fault_handler(struct UTrapframe *utf) {
 			return;
 		}
 		else {
+			cprintf("calling resume on the utf\n");
 			resume(utf);
 		}
 	}
@@ -165,7 +171,7 @@ migrate_process_page_request(int f) {
 	cprintf("set up a pipe ipc with migrate client.  trying to send page.\n");
 	struct MigrateResponseHeader response_header;
 	response_header.mr_magic = MIGRATE_RESPONSE_MAGIC;
-	cprintf("migrate daemon: mpr_src_envid: %d\n", request.mpr_src_envid);
+	cprintf("migrate daemon: mpr_src_envid: %x\n", request.mpr_src_envid);
 	assert(request.mpr_src_envid != 0);
 	response_header.mr_recipient_envid = request.mpr_src_envid;
 	if ((r = write(wf, &response_header, sizeof(struct MigrateResponseHeader)))
@@ -195,7 +201,6 @@ migrate_process_page_request(int f) {
 			sys_page_unmap(0, UTEMP);
 			return r < 0 ? r : -E_IO;
 		}
-		return (r < 0) ? r : -E_IO;
 	}
 	cprintf("sent page itself\n");
 
@@ -223,18 +228,13 @@ migrate_spawn(int f) {
 		panic("migrate_spawn: unreachable code in the child");
 	}
 	
-
-	if ((r = readn(f, &sh, sizeof(struct MigrateSuperHeader)))
-			!= sizeof(struct MigrateSuperHeader)) {
+	// If we got here, then user/migrated.c already read MIGRATE_MAGIC
+	if ((r = readn(f, ((char*)&sh)+4, sizeof(struct MigrateSuperHeader)-4))
+			!= sizeof(struct MigrateSuperHeader)-4) {
 		r = (r < 0) ? r : -E_IO;
 		goto cleanup;
 	}
 
-	if (sh.msh_magic != MIGRATE_MAGIC) {
-		// XXX: should we be make some custom error codes for migration?
-		r = -E_NOT_EXEC;
-		goto cleanup;
-	}
 	cprintf("[%08x] migrate_spawn: read superheader\n", thisenv->env_id);
 	
 	for (uint32_t i = 0; i < sh.msh_n_pages; i++) {
@@ -275,7 +275,8 @@ migrate_spawn(int f) {
 	}
 	cprintf("[%08x] migrate_spawn: done reading pages\n", thisenv->env_id);
     cprintf("%08x\n", sh.msh_pgfault_upcall);
-	if ((r = sys_env_set_pgfault_upcall(envid, &sh.msh_pgfault_upcall)) < 0) {
+	if ((r = sys_env_set_pgfault_upcall(envid, (void*)sh.msh_pgfault_upcall))
+			< 0) {
 		panic("migrate_spawn: sys_env_set_pgfault_upcall%e\n", r);
 		goto cleanup;
 	}
@@ -302,7 +303,7 @@ cleanup:
  */
 static int
 migrate_send_state(int f, struct Trapframe *tf) {
-	int r;
+	int r, audit_r;
 	struct MigrateSuperHeader sh;
 	struct MigratePageHeader h;
 
@@ -312,12 +313,27 @@ migrate_send_state(int f, struct Trapframe *tf) {
 
 	cprintf("[%08x]: entering migrate_send_state\n", thisenv->env_id);	
 
+	struct Fd *f_fd;
+	char *f_fd_data;
+	unsigned f_fd_pgnum, f_fd_data_pgnum;
+
+	if ((r = fd_lookup(f, &f_fd, true)) < 0) {
+		return r;
+	}
+	f_fd_pgnum = PGNUM(f_fd);
+	f_fd_data = fd2data(f_fd);
+	f_fd_data_pgnum = PGNUM(f_fd_data);
+
 	uint32_t n_used_pages = 0;
 	unsigned pn;
+	char *addr_to_use;
     for (unsigned pdx = 0; pdx < n_pdx; pdx++) {
         if(vpd[pdx] & PTE_P) {
             for (pn = pdx << 10; pn < n_pages && (pn >> 10) == pdx; pn++) {
-				if(vpt[pn] & PTE_P) {
+				// Ignore file descriptor data page and file descriptor page.
+				if(vpt[pn] & PTE_P
+				   && pn != f_fd_data_pgnum
+				   && pn != f_fd_pgnum) {
 					n_used_pages++;
 				}
 			}
@@ -338,20 +354,39 @@ migrate_send_state(int f, struct Trapframe *tf) {
     for (unsigned pdx = 0; pdx < n_pdx; pdx++) {
         if(vpd[pdx] & PTE_P) {
 			for (pn = pdx << 10; pn < n_pages && (pn >> 10) == pdx; pn++) {
-				if(vpt[pn] & PTE_P) {
+				if(vpt[pn] & PTE_P
+				   && pn != f_fd_data_pgnum
+				   && pn != f_fd_pgnum) {
+					cprintf("[%08x]: migrate_send_state: sending page %x\n",
+								thisenv->env_id, pn);
 					h.mph_magic = MIGRATE_PG_MAGIC;
 					h.mph_addr = (void *)VA_OF_VPN(pn);	
 					h.mph_perm = vpt[pn] & PTE_SYSCALL;
+
+					audit_r = sys_page_audit(PTE_ADDR(vpt[pn]) >> PGSHIFT);
+					if (audit_r < 0) return audit_r;
+
 					if ((r = write(f, &h, sizeof(struct MigratePageHeader)))
 							!= sizeof(struct MigratePageHeader)) {
 						return r < 0 ? r : -E_IO;
 					}
-                    for(int i = 0; i < 4; i++)
-                    {
-					    if ((r = write(f, (char *)h.mph_addr + PGSIZE / 4 * i, PGSIZE/4)) != PGSIZE/4) {
-						    return r < 0 ? r : -E_IO;
-					    }
-                    }
+
+					// If the page is either not shared or not writable
+					// anywhere, we can just send it over the wire.
+					if (audit_r == 0 || audit_r == 1) {
+						addr_to_use = (char *)h.mph_addr;
+					}
+					// If the page is shared and writable somewhere, audit
+					// evicted it and put it in UTEMP.
+					else {
+						addr_to_use = (char *)UTEMP;
+					}
+					for(int i = 0; i < 4; i++)
+					{
+						if ((r = write(f, addr_to_use + PGSIZE / 4 * i, PGSIZE/4)) != PGSIZE/4) {
+							return r < 0 ? r : -E_IO;
+						}
+					}
 				}
             }
         }
@@ -370,8 +405,8 @@ migrate_send_state(int f, struct Trapframe *tf) {
 static 
 int mig_help(void) {
     cprintf("wtf\n");
-    thisenv = &envs[ENVX(sys_getenvid())];
-    cprintf("%x\n", thisenv->env_id);
+	thisenv = &envs[ENVX(sys_getenvid())];
+	cprintf("%x\n", thisenv->env_id);
     return 0;
 }
 
@@ -379,18 +414,31 @@ asmlinkage void mig(struct PushRegs *regs, uintptr_t *ebp, uintptr_t *esp);
 
 int
 migrate(void) {
-	int r, writesock, readsock;
+	int r, p[2];
 	int *x = NULL;
     struct Trapframe tf;
-    mach_connect(&writesock, &readsock);
+	if ((r = pipe(p)) < 0) {
+		return r;
+	}
+
+	// Hook up the read end of our pipe to the migrate client.
+	if ((r = pipe_ipc_send(ENVID_MIGRATE_CLIENT, p[0])) < 0) 	{
+		close(p[0]);
+		close(p[1]);
+		return r;
+	}
+	close(p[0]);
 	
     sys_time_msec();
 	memcpy(&tf, (const void *)&thisenv->env_tf, sizeof(struct Trapframe));
     mig(&tf.tf_regs, &tf.tf_regs.reg_ebp, &tf.tf_esp);
     tf.tf_eip = (uintptr_t)mig_help;
-	if ((r = migrate_send_state(writesock, &tf)) < 0) 
+	if ((r = migrate_send_state(p[1], &tf)) < 0)  {
+		close(p[1]);
 		return r;
+	}
 	
+	close(p[1]);
     // Destroy this environment iff we're successful.  Does not return.
 	sys_env_destroy(0);
 	panic("unreachable code\n");
