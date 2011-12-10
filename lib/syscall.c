@@ -153,3 +153,23 @@ sys_program_read(envid_t dst_env, void *va,
 {
 	return syscall(SYS_program_read, 0, dst_env, (uintptr_t) va, programid, offset, len);
 }
+
+int
+sys_page_evict(unsigned ppn) {
+	return syscall(SYS_page_evict, 0, ppn, 0, 0, 0, 0);
+}
+
+int
+sys_page_audit(unsigned ppn) {
+	return syscall(SYS_page_audit, 0, ppn, 0, 0, 0, 0);
+}
+
+int
+sys_page_recover(unsigned ppn) {
+	return syscall(SYS_page_recover, 0, ppn, 0, 0, 0, 0);
+}
+
+int sys_page_alloc_exists_on_remote(envid_t envid, void *va, int perm)
+{
+	return syscall(SYS_page_alloc_exists_on_remote, 1, envid, (uint32_t) va, perm, 0, 0);
+}
