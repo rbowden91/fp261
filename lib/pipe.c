@@ -117,7 +117,7 @@ pipeisclosed(int fdnum)
 }
 
 int
-pipe_ipc_recv_read() {
+pipe_ipc_recv_read(envid_t *from_env) {
     int r;
     struct Fd *fd;
 
@@ -127,9 +127,8 @@ pipe_ipc_recv_read() {
         goto err;
     }
 
-    envid_t from_env;
     int perm;
-    if ((r = ipc_recv(&from_env, fd2data(fd), &perm)) < 0) {
+    if ((r = ipc_recv(from_env, fd2data(fd), &perm)) < 0) {
         goto err1;
     }
 
