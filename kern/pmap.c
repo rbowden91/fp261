@@ -527,7 +527,7 @@ page_lookup(pde_t *pgdir, uintptr_t va, pte_t **pte_store)
 void
 page_decref(struct Page* pp)
 {
-	if (--pp->pp_ref == 0)
+	if (pp->pp_ref == 0 && !pp->pp_exists_on_remote_machine)
 		page_free(pp);
 }
 

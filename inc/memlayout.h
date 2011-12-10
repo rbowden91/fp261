@@ -162,6 +162,11 @@ struct Page {
 	// Count of pointers to this page (usually in page table entries).
 	// Reserved pages may not have valid reference counts.
 	uint16_t pp_ref;
+
+	// For process migration
+	uint32_t pp_remote_network_addr;
+	physaddr_t pp_remote_page_physaddr;
+	bool pp_exists_on_remote_machine;
 };
 
 #undef Page

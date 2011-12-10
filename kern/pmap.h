@@ -10,6 +10,8 @@
 #include <inc/assert.h>
 struct Env;
 
+// For sharing pages with remote machines.
+#define PTE_REMOTE 0x400
 
 /* This macro takes a kernel virtual address -- an address that points above
  * KERNBASE, where the machine's maximum 256MB of physical memory is mapped --
@@ -51,6 +53,11 @@ struct Page {
 	// Count of pointers to this page (usually in page table entries).
 	// Reserved pages may not have valid reference counts.
 	uint16_t pp_ref;
+
+	// For process migration
+	uint32_t pp_remote_network_addr;
+	physaddr_t pp_remote_page_physaddr;
+	bool pp_exists_on_remote_machine;
 };
 
 extern pde_t *kern_pgdir;
