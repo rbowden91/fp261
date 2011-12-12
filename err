@@ -1,0 +1,1003 @@
+net/lwip/jos/arch/perror.c:7:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:7:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:7:11: error: expected ‘{’ before ‘=’ token
+cc1plus: warnings being treated as errors
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:7:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:7:13: error: no match for ‘operator=’ in ‘._0 = "EPERM"’
+net/lwip/jos/arch/perror.c:8:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:8:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:8:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:8:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:8:14: error: no match for ‘operator=’ in ‘._1 = "ENOENT"’
+net/lwip/jos/arch/perror.c:9:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:9:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:9:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:9:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:9:13: error: no match for ‘operator=’ in ‘._2 = "ESRCH"’
+net/lwip/jos/arch/perror.c:10:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:10:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:10:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:10:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:10:13: error: no match for ‘operator=’ in ‘._3 = "EINTR"’
+net/lwip/jos/arch/perror.c:11:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:11:7: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:11:9: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:11:9: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:11:11: error: no match for ‘operator=’ in ‘._4 = "EIO"’
+net/lwip/jos/arch/perror.c:12:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:12:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:12:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:12:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:12:13: error: no match for ‘operator=’ in ‘._5 = "ENXIO"’
+net/lwip/jos/arch/perror.c:13:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:13:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:13:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:13:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:13:13: error: no match for ‘operator=’ in ‘._6 = "E2BIG"’
+net/lwip/jos/arch/perror.c:14:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:14:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:14:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:14:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:14:15: error: no match for ‘operator=’ in ‘._7 = "ENOEXEC"’
+net/lwip/jos/arch/perror.c:15:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:15:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:15:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:15:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:15:13: error: no match for ‘operator=’ in ‘._8 = "EBADF"’
+net/lwip/jos/arch/perror.c:16:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:16:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:16:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:16:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:16:14: error: no match for ‘operator=’ in ‘._9 = "ECHILD"’
+net/lwip/jos/arch/perror.c:17:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:17:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:17:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:17:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:17:14: error: no match for ‘operator=’ in ‘._10 = "EAGAIN"’
+net/lwip/jos/arch/perror.c:18:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:18:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:18:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:18:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:18:14: error: no match for ‘operator=’ in ‘._11 = "ENOMEM"’
+net/lwip/jos/arch/perror.c:19:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:19:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:19:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:19:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:19:14: error: no match for ‘operator=’ in ‘._12 = "EACCES"’
+net/lwip/jos/arch/perror.c:20:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:20:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:20:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:20:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:20:14: error: no match for ‘operator=’ in ‘._13 = "EFAULT"’
+net/lwip/jos/arch/perror.c:21:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:21:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:21:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:21:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:21:15: error: no match for ‘operator=’ in ‘._14 = "ENOTBLK"’
+net/lwip/jos/arch/perror.c:22:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:22:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:22:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:22:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:22:13: error: no match for ‘operator=’ in ‘._15 = "EBUSY"’
+net/lwip/jos/arch/perror.c:23:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:23:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:23:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:23:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:23:14: error: no match for ‘operator=’ in ‘._16 = "EEXIST"’
+net/lwip/jos/arch/perror.c:24:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:24:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:24:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:24:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:24:13: error: no match for ‘operator=’ in ‘._17 = "EXDEV"’
+net/lwip/jos/arch/perror.c:25:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:25:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:25:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:25:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:25:14: error: no match for ‘operator=’ in ‘._18 = "ENODEV"’
+net/lwip/jos/arch/perror.c:26:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:26:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:26:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:26:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:26:15: error: no match for ‘operator=’ in ‘._19 = "ENOTDIR"’
+net/lwip/jos/arch/perror.c:27:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:27:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:27:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:27:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:27:14: error: no match for ‘operator=’ in ‘._20 = "EISDIR"’
+net/lwip/jos/arch/perror.c:28:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:28:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:28:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:28:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:28:14: error: no match for ‘operator=’ in ‘._21 = "EINVAL"’
+net/lwip/jos/arch/perror.c:29:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:29:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:29:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:29:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:29:14: error: no match for ‘operator=’ in ‘._22 = "ENFILE"’
+net/lwip/jos/arch/perror.c:30:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:30:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:30:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:30:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:30:14: error: no match for ‘operator=’ in ‘._23 = "EMFILE"’
+net/lwip/jos/arch/perror.c:31:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:31:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:31:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:31:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:31:14: error: no match for ‘operator=’ in ‘._24 = "ENOTTY"’
+net/lwip/jos/arch/perror.c:32:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:32:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:32:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:32:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:32:15: error: no match for ‘operator=’ in ‘._25 = "ETXTBSY"’
+net/lwip/jos/arch/perror.c:33:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:33:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:33:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:33:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:33:13: error: no match for ‘operator=’ in ‘._26 = "EFBIG"’
+net/lwip/jos/arch/perror.c:34:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:34:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:34:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:34:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:34:14: error: no match for ‘operator=’ in ‘._27 = "ENOSPC"’
+net/lwip/jos/arch/perror.c:35:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:35:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:35:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:35:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:35:14: error: no match for ‘operator=’ in ‘._28 = "ESPIPE"’
+net/lwip/jos/arch/perror.c:36:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:36:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:36:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:36:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:36:13: error: no match for ‘operator=’ in ‘._29 = "EROFS"’
+net/lwip/jos/arch/perror.c:37:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:37:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:37:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:37:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:37:14: error: no match for ‘operator=’ in ‘._30 = "EMLINK"’
+net/lwip/jos/arch/perror.c:38:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:38:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:38:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:38:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:38:13: error: no match for ‘operator=’ in ‘._31 = "EPIPE"’
+net/lwip/jos/arch/perror.c:39:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:39:8: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:39:10: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:39:10: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:39:12: error: no match for ‘operator=’ in ‘._32 = "EDOM"’
+net/lwip/jos/arch/perror.c:40:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:40:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:40:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:40:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:40:14: error: no match for ‘operator=’ in ‘._33 = "ERANGE"’
+net/lwip/jos/arch/perror.c:41:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:41:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:41:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:41:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:41:15: error: no match for ‘operator=’ in ‘._34 = "EDEADLK"’
+net/lwip/jos/arch/perror.c:42:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:42:16: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:42:18: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:42:18: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:42:20: error: no match for ‘operator=’ in ‘._35 = "ENAMETOOLONG"’
+net/lwip/jos/arch/perror.c:43:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:43:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:43:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:43:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:43:14: error: no match for ‘operator=’ in ‘._36 = "ENOLCK"’
+net/lwip/jos/arch/perror.c:44:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:44:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:44:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:44:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:44:14: error: no match for ‘operator=’ in ‘._37 = "ENOSYS"’
+net/lwip/jos/arch/perror.c:45:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:45:13: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:45:15: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:45:15: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:45:17: error: no match for ‘operator=’ in ‘._38 = "ENOTEMPTY"’
+net/lwip/jos/arch/perror.c:46:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:46:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:46:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:46:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:46:13: error: no match for ‘operator=’ in ‘._39 = "ELOOP"’
+net/lwip/jos/arch/perror.c:47:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:47:15: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:47:17: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:47:17: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:47:19: error: no match for ‘operator=’ in ‘._40 = "EWOULDBLOCK"’
+net/lwip/jos/arch/perror.c:48:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:48:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:48:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:48:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:48:14: error: no match for ‘operator=’ in ‘._41 = "ENOMSG"’
+net/lwip/jos/arch/perror.c:49:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:49:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:49:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:49:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:49:13: error: no match for ‘operator=’ in ‘._42 = "EIDRM"’
+net/lwip/jos/arch/perror.c:50:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:50:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:50:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:50:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:50:14: error: no match for ‘operator=’ in ‘._43 = "ECHRNG"’
+net/lwip/jos/arch/perror.c:51:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:51:12: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:51:14: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:51:14: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:51:16: error: no match for ‘operator=’ in ‘._44 = "EL2NSYNC"’
+net/lwip/jos/arch/perror.c:52:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:52:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:52:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:52:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:52:14: error: no match for ‘operator=’ in ‘._45 = "EL3HLT"’
+net/lwip/jos/arch/perror.c:53:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:53:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:53:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:53:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:53:14: error: no match for ‘operator=’ in ‘._46 = "EL3RST"’
+net/lwip/jos/arch/perror.c:54:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:54:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:54:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:54:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:54:14: error: no match for ‘operator=’ in ‘._47 = "ELNRNG"’
+net/lwip/jos/arch/perror.c:55:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:55:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:55:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:55:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:55:15: error: no match for ‘operator=’ in ‘._48 = "EUNATCH"’
+net/lwip/jos/arch/perror.c:56:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:56:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:56:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:56:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:56:14: error: no match for ‘operator=’ in ‘._49 = "ENOCSI"’
+net/lwip/jos/arch/perror.c:57:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:57:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:57:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:57:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:57:14: error: no match for ‘operator=’ in ‘._50 = "EL2HLT"’
+net/lwip/jos/arch/perror.c:58:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:58:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:58:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:58:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:58:13: error: no match for ‘operator=’ in ‘._51 = "EBADE"’
+net/lwip/jos/arch/perror.c:59:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:59:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:59:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:59:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:59:13: error: no match for ‘operator=’ in ‘._52 = "EBADR"’
+net/lwip/jos/arch/perror.c:60:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:60:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:60:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:60:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:60:14: error: no match for ‘operator=’ in ‘._53 = "EXFULL"’
+net/lwip/jos/arch/perror.c:61:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:61:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:61:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:61:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:61:14: error: no match for ‘operator=’ in ‘._54 = "ENOANO"’
+net/lwip/jos/arch/perror.c:62:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:62:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:62:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:62:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:62:15: error: no match for ‘operator=’ in ‘._55 = "EBADRQC"’
+net/lwip/jos/arch/perror.c:63:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:63:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:63:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:63:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:63:15: error: no match for ‘operator=’ in ‘._56 = "EBADSLT"’
+net/lwip/jos/arch/perror.c:65:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:65:13: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:65:15: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:65:15: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:65:17: error: no match for ‘operator=’ in ‘._57 = "EDEADLOCK"’
+net/lwip/jos/arch/perror.c:67:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:67:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:67:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:67:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:67:14: error: no match for ‘operator=’ in ‘._58 = "EBFONT"’
+net/lwip/jos/arch/perror.c:68:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:68:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:68:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:68:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:68:14: error: no match for ‘operator=’ in ‘._59 = "ENOSTR"’
+net/lwip/jos/arch/perror.c:69:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:69:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:69:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:69:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:69:15: error: no match for ‘operator=’ in ‘._60 = "ENODATA"’
+net/lwip/jos/arch/perror.c:70:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:70:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:70:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:70:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:70:13: error: no match for ‘operator=’ in ‘._61 = "ETIME"’
+net/lwip/jos/arch/perror.c:71:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:71:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:71:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:71:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:71:13: error: no match for ‘operator=’ in ‘._62 = "ENOSR"’
+net/lwip/jos/arch/perror.c:72:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:72:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:72:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:72:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:72:14: error: no match for ‘operator=’ in ‘._63 = "ENONET"’
+net/lwip/jos/arch/perror.c:73:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:73:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:73:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:73:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:73:14: error: no match for ‘operator=’ in ‘._64 = "ENOPKG"’
+net/lwip/jos/arch/perror.c:74:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:74:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:74:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:74:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:74:15: error: no match for ‘operator=’ in ‘._65 = "EREMOTE"’
+net/lwip/jos/arch/perror.c:75:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:75:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:75:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:75:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:75:15: error: no match for ‘operator=’ in ‘._66 = "ENOLINK"’
+net/lwip/jos/arch/perror.c:76:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:76:8: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:76:10: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:76:10: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:76:12: error: no match for ‘operator=’ in ‘._67 = "EADV"’
+net/lwip/jos/arch/perror.c:77:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:77:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:77:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:77:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:77:14: error: no match for ‘operator=’ in ‘._68 = "ESRMNT"’
+net/lwip/jos/arch/perror.c:78:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:78:9: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:78:11: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:78:11: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:78:13: error: no match for ‘operator=’ in ‘._69 = "ECOMM"’
+net/lwip/jos/arch/perror.c:79:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:79:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:79:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:79:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:79:14: error: no match for ‘operator=’ in ‘._70 = "EPROTO"’
+net/lwip/jos/arch/perror.c:80:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:80:13: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:80:15: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:80:15: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:80:17: error: no match for ‘operator=’ in ‘._71 = "EMULTIHOP"’
+net/lwip/jos/arch/perror.c:81:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:81:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:81:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:81:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:81:15: error: no match for ‘operator=’ in ‘._72 = "EDOTDOT"’
+net/lwip/jos/arch/perror.c:82:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:82:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:82:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:82:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:82:15: error: no match for ‘operator=’ in ‘._73 = "EBADMSG"’
+net/lwip/jos/arch/perror.c:83:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:83:13: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:83:15: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:83:15: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:83:17: error: no match for ‘operator=’ in ‘._74 = "EOVERFLOW"’
+net/lwip/jos/arch/perror.c:84:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:84:12: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:84:14: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:84:14: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:84:16: error: no match for ‘operator=’ in ‘._75 = "ENOTUNIQ"’
+net/lwip/jos/arch/perror.c:85:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:85:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:85:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:85:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:85:14: error: no match for ‘operator=’ in ‘._76 = "EBADFD"’
+net/lwip/jos/arch/perror.c:86:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:86:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:86:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:86:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:86:15: error: no match for ‘operator=’ in ‘._77 = "EREMCHG"’
+net/lwip/jos/arch/perror.c:87:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:87:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:87:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:87:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:87:15: error: no match for ‘operator=’ in ‘._78 = "ELIBACC"’
+net/lwip/jos/arch/perror.c:88:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:88:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:88:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:88:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:88:15: error: no match for ‘operator=’ in ‘._79 = "ELIBBAD"’
+net/lwip/jos/arch/perror.c:89:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:89:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:89:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:89:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:89:15: error: no match for ‘operator=’ in ‘._80 = "ELIBSCN"’
+net/lwip/jos/arch/perror.c:90:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:90:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:90:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:90:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:90:15: error: no match for ‘operator=’ in ‘._81 = "ELIBMAX"’
+net/lwip/jos/arch/perror.c:91:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:91:12: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:91:14: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:91:14: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:91:16: error: no match for ‘operator=’ in ‘._82 = "ELIBEXEC"’
+net/lwip/jos/arch/perror.c:92:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:92:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:92:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:92:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:92:14: error: no match for ‘operator=’ in ‘._83 = "EILSEQ"’
+net/lwip/jos/arch/perror.c:93:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:93:12: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:93:14: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:93:14: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:93:16: error: no match for ‘operator=’ in ‘._84 = "ERESTART"’
+net/lwip/jos/arch/perror.c:94:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:94:12: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:94:14: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:94:14: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:94:16: error: no match for ‘operator=’ in ‘._85 = "ESTRPIPE"’
+net/lwip/jos/arch/perror.c:95:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:95:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:95:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:95:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:95:14: error: no match for ‘operator=’ in ‘._86 = "EUSERS"’
+net/lwip/jos/arch/perror.c:96:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:96:12: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:96:14: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:96:14: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:96:16: error: no match for ‘operator=’ in ‘._87 = "ENOTSOCK"’
+net/lwip/jos/arch/perror.c:97:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:97:16: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:97:18: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:97:18: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:97:20: error: no match for ‘operator=’ in ‘._88 = "EDESTADDRREQ"’
+net/lwip/jos/arch/perror.c:98:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:98:12: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:98:14: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:98:14: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:98:16: error: no match for ‘operator=’ in ‘._89 = "EMSGSIZE"’
+net/lwip/jos/arch/perror.c:99:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:99:14: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:99:16: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:99:16: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:99:18: error: no match for ‘operator=’ in ‘._90 = "EPROTOTYPE"’
+net/lwip/jos/arch/perror.c:100:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:100:15: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:100:17: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:100:17: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:100:19: error: no match for ‘operator=’ in ‘._91 = "ENOPROTOOPT"’
+net/lwip/jos/arch/perror.c:101:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:101:19: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:101:21: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:101:21: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:101:23: error: no match for ‘operator=’ in ‘._92 = "EPROTONOSUPPORT"’
+net/lwip/jos/arch/perror.c:102:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:102:19: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:102:21: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:102:21: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:102:23: error: no match for ‘operator=’ in ‘._93 = "ESOCKTNOSUPPORT"’
+net/lwip/jos/arch/perror.c:103:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:103:14: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:103:16: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:103:16: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:103:18: error: no match for ‘operator=’ in ‘._94 = "EOPNOTSUPP"’
+net/lwip/jos/arch/perror.c:104:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:104:16: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:104:18: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:104:18: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:104:20: error: no match for ‘operator=’ in ‘._95 = "EPFNOSUPPORT"’
+net/lwip/jos/arch/perror.c:105:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:105:16: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:105:18: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:105:18: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:105:20: error: no match for ‘operator=’ in ‘._96 = "EAFNOSUPPORT"’
+net/lwip/jos/arch/perror.c:106:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:106:14: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:106:16: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:106:16: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:106:18: error: no match for ‘operator=’ in ‘._97 = "EADDRINUSE"’
+net/lwip/jos/arch/perror.c:107:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:107:17: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:107:19: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:107:19: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:107:21: error: no match for ‘operator=’ in ‘._98 = "EADDRNOTAVAIL"’
+net/lwip/jos/arch/perror.c:108:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:108:12: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:108:14: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:108:14: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:108:16: error: no match for ‘operator=’ in ‘._99 = "ENETDOWN"’
+net/lwip/jos/arch/perror.c:109:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:109:15: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:109:17: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:109:17: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:109:19: error: no match for ‘operator=’ in ‘._100 = "ENETUNREACH"’
+net/lwip/jos/arch/perror.c:110:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:110:13: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:110:15: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:110:15: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:110:17: error: no match for ‘operator=’ in ‘._101 = "ENETRESET"’
+net/lwip/jos/arch/perror.c:111:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:111:16: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:111:18: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:111:18: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:111:20: error: no match for ‘operator=’ in ‘._102 = "ECONNABORTED"’
+net/lwip/jos/arch/perror.c:112:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:112:14: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:112:16: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:112:16: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:112:18: error: no match for ‘operator=’ in ‘._103 = "ECONNRESET"’
+net/lwip/jos/arch/perror.c:113:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:113:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:113:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:113:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:113:15: error: no match for ‘operator=’ in ‘._104 = "ENOBUFS"’
+net/lwip/jos/arch/perror.c:114:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:114:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:114:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:114:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:114:15: error: no match for ‘operator=’ in ‘._105 = "EISCONN"’
+net/lwip/jos/arch/perror.c:115:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:115:12: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:115:14: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:115:14: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:115:16: error: no match for ‘operator=’ in ‘._106 = "ENOTCONN"’
+net/lwip/jos/arch/perror.c:116:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:116:13: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:116:15: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:116:15: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:116:17: error: no match for ‘operator=’ in ‘._107 = "ESHUTDOWN"’
+net/lwip/jos/arch/perror.c:117:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:117:16: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:117:18: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:117:18: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:117:20: error: no match for ‘operator=’ in ‘._108 = "ETOOMANYREFS"’
+net/lwip/jos/arch/perror.c:118:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:118:13: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:118:15: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:118:15: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:118:17: error: no match for ‘operator=’ in ‘._109 = "ETIMEDOUT"’
+net/lwip/jos/arch/perror.c:119:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:119:16: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:119:18: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:119:18: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:119:20: error: no match for ‘operator=’ in ‘._110 = "ECONNREFUSED"’
+net/lwip/jos/arch/perror.c:120:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:120:13: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:120:15: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:120:15: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:120:17: error: no match for ‘operator=’ in ‘._111 = "EHOSTDOWN"’
+net/lwip/jos/arch/perror.c:121:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:121:16: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:121:18: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:121:18: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:121:20: error: no match for ‘operator=’ in ‘._112 = "EHOSTUNREACH"’
+net/lwip/jos/arch/perror.c:122:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:122:12: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:122:14: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:122:14: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:122:16: error: no match for ‘operator=’ in ‘._113 = "EALREADY"’
+net/lwip/jos/arch/perror.c:123:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:123:15: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:123:17: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:123:17: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:123:19: error: no match for ‘operator=’ in ‘._114 = "EINPROGRESS"’
+net/lwip/jos/arch/perror.c:124:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:124:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:124:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:124:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:124:14: error: no match for ‘operator=’ in ‘._115 = "ESTALE"’
+net/lwip/jos/arch/perror.c:125:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:125:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:125:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:125:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:125:15: error: no match for ‘operator=’ in ‘._116 = "EUCLEAN"’
+net/lwip/jos/arch/perror.c:126:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:126:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:126:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:126:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:126:15: error: no match for ‘operator=’ in ‘._117 = "ENOTNAM"’
+net/lwip/jos/arch/perror.c:127:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:127:11: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:127:13: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:127:13: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:127:15: error: no match for ‘operator=’ in ‘._118 = "ENAVAIL"’
+net/lwip/jos/arch/perror.c:128:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:128:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:128:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:128:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:128:14: error: no match for ‘operator=’ in ‘._119 = "EISNAM"’
+net/lwip/jos/arch/perror.c:129:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:129:13: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:129:15: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:129:15: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:129:17: error: no match for ‘operator=’ in ‘._120 = "EREMOTEIO"’
+net/lwip/jos/arch/perror.c:130:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:130:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:130:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:130:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:130:14: error: no match for ‘operator=’ in ‘._121 = "EDQUOT"’
+net/lwip/jos/arch/perror.c:132:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:132:13: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:132:15: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:132:15: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:132:17: error: no match for ‘operator=’ in ‘._122 = "ENOMEDIUM"’
+net/lwip/jos/arch/perror.c:133:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:133:15: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:133:17: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:133:17: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:133:19: error: no match for ‘operator=’ in ‘._123 = "EMEDIUMTYPE"’
+net/lwip/jos/arch/perror.c:136:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:136:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:136:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:136:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:136:14: error: no match for ‘operator=’ in ‘._124 = "ENSROK"’
+net/lwip/jos/arch/perror.c:137:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:137:14: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:137:16: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:137:16: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:137:18: error: no match for ‘operator=’ in ‘._125 = "ENSRNODATA"’
+net/lwip/jos/arch/perror.c:138:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:138:15: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:138:17: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:138:17: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:138:19: error: no match for ‘operator=’ in ‘._126 = "ENSRFORMERR"’
+net/lwip/jos/arch/perror.c:139:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:139:16: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:139:18: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:139:18: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:139:20: error: no match for ‘operator=’ in ‘._127 = "ENSRSERVFAIL"’
+net/lwip/jos/arch/perror.c:140:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:140:16: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:140:18: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:140:18: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:140:20: error: no match for ‘operator=’ in ‘._128 = "ENSRNOTFOUND"’
+net/lwip/jos/arch/perror.c:141:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:141:14: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:141:16: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:141:16: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:141:18: error: no match for ‘operator=’ in ‘._129 = "ENSRNOTIMP"’
+net/lwip/jos/arch/perror.c:142:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:142:15: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:142:17: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:142:17: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:142:19: error: no match for ‘operator=’ in ‘._130 = "ENSRREFUSED"’
+net/lwip/jos/arch/perror.c:143:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:143:16: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:143:18: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:143:18: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:143:20: error: no match for ‘operator=’ in ‘._131 = "ENSRBADQUERY"’
+net/lwip/jos/arch/perror.c:144:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:144:15: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:144:17: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:144:17: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:144:19: error: no match for ‘operator=’ in ‘._132 = "ENSRBADNAME"’
+net/lwip/jos/arch/perror.c:145:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:145:17: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:145:19: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:145:19: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:145:21: error: no match for ‘operator=’ in ‘._133 = "ENSRBADFAMILY"’
+net/lwip/jos/arch/perror.c:146:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:146:15: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:146:17: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:146:17: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:146:19: error: no match for ‘operator=’ in ‘._134 = "ENSRBADRESP"’
+net/lwip/jos/arch/perror.c:147:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:147:19: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:147:21: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:147:21: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:147:23: error: no match for ‘operator=’ in ‘._135 = "ENSRCONNREFUSED"’
+net/lwip/jos/arch/perror.c:148:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:148:15: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:148:17: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:148:17: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:148:19: error: no match for ‘operator=’ in ‘._136 = "ENSRTIMEOUT"’
+net/lwip/jos/arch/perror.c:149:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:149:10: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:149:12: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:149:12: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:149:14: error: no match for ‘operator=’ in ‘._137 = "ENSROF"’
+net/lwip/jos/arch/perror.c:150:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:150:12: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:150:14: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:150:14: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:150:16: error: no match for ‘operator=’ in ‘._138 = "ENSRFILE"’
+net/lwip/jos/arch/perror.c:151:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:151:13: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:151:15: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:151:15: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:151:17: error: no match for ‘operator=’ in ‘._139 = "ENSRNOMEM"’
+net/lwip/jos/arch/perror.c:152:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:152:19: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:152:21: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:152:21: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:152:23: error: no match for ‘operator=’ in ‘._140 = "ENSRDESTRUCTION"’
+net/lwip/jos/arch/perror.c:153:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:153:26: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:153:28: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:153:28: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:153:30: error: no match for ‘operator=’ in ‘._141 = "ENSRQUERYDOMAINTOOLONG"’
+net/lwip/jos/arch/perror.c:154:4: error: expected identifier before numeric constant
+net/lwip/jos/arch/perror.c:154:17: error: non-local function ‘void<lambda>::operator()() const’ uses local type ‘<lambda>’
+net/lwip/jos/arch/perror.c: In lambda function:
+net/lwip/jos/arch/perror.c:154:19: error: expected ‘{’ before ‘=’ token
+net/lwip/jos/arch/perror.c: At global scope:
+net/lwip/jos/arch/perror.c:154:19: error: lambda expressions only available with -std=c++0x or -std=gnu++0x
+net/lwip/jos/arch/perror.c:154:21: error: no match for ‘operator=’ in ‘._142 = "ENSRCNAMELOOP"’
+make: *** [obj/net/lwip/jos/arch/perror.o] Error 1

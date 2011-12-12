@@ -1,0 +1,7 @@
+I implemented the sfork challenge problem this week.  It required a couple of changes to a couple of files.  There is a new constant, PTE_SHARED, which is used to mark shared pages.  Firstly, duppage takes an additional argument (although its default value is false, so it does not require modification to the original fork implementation).  This way, it knows whether to mark something that is writeable as copy-on-write or as shared.
+
+In duppage, if a page is already marked COW (perhaps a previous call to fork before sfork), then you CANNOT just mark the page PTE_SHARED, because the environment thinking it is shared could write to it with the other environment thinking that page won't change.  The same is true for marking a shared page COW.
+
+In order to drop the thisenv, since we can't have "private" global variables like that with completely shared pages, I made a new macro, THISENV, which effectively does the calculation for thisenv using the sys_getenvid system call and the envs array.  In user/pingpongs.c, each references to thisenv has to be changed to THISENV, and similarly for ipc_recv, since an environment created during sfork very well could call ipc_recv, in which case thisenv will break things.
+
+Finally, in the fork implementation we have to break the user address space into two segments - below the stack, and above the lowest page the stack is on.  The former can be marked entirely shared, while the latter (which also includes UXSTACK, a special case in itself) should be made COW.
