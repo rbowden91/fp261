@@ -53,7 +53,7 @@ KERN_BINFILES :=	user/idle \
 			user/echosrv \
 			user/echotest \
 			fs/bufcache \
-			net/ns
+            net/ns
 			
 
 KERN_OBJFILES := $(patsubst %.c, $(OBJDIR)/%.o, $(KERN_SRCFILES))

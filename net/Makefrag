@@ -6,6 +6,7 @@ NET_SRCFILES :=		net/serv.c \
 			net/input.c \
 			net/output.c
 
+
 NET_OBJFILES := $(patsubst net/%.c, $(OBJDIR)/net/%.o, $(NET_SRCFILES))
 
 $(OBJDIR)/net/%.o: $(GCCCHECK) net/%.c net/ns.h inc/lib.h

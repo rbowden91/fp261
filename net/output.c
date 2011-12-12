@@ -1,7 +1,6 @@
-#include <inc/env.h>
-#include <inc/lib.h>
 #include "ns.h"
-#define PKTMAP		0x10000000
+
+extern union Nsipc nsipcbuf;
 
 void
 output(envid_t ns_envid)
@@ -13,10 +12,9 @@ output(envid_t ns_envid)
 	//	- send the packet to the device driver
     while(1)
     {
-        ipc_recv(&envid, (void *)PKTMAP, 0);
+        ipc_recv(&envid, &nsipcbuf, 0);
         if (envid != ENVID_NS)
             continue;
-        struct jif_pkt *jp = (struct jif_pkt *)PKTMAP;
-        while(sys_e1000_transmit(jp->jp_data, jp->jp_len) < 0) ;
+        while(sys_e1000_transmit(nsipcbuf.pkt.jp_data, nsipcbuf.pkt.jp_len));
     }
 }
