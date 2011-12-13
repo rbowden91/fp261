@@ -72,7 +72,9 @@ ipc_send(envid_t to_env, uint32_t val, void *pg, int perm)
             // yield, since we don't know how long it will take for
             // the other environment to wait for a message
             if (ret == -E_IPC_NOT_RECV)
+            {
                 sys_yield();
+            }
             else
                 panic("ipc_send: %e", ret);
         }

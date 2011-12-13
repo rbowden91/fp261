@@ -141,6 +141,12 @@ sys_e1000_transmit(void *buffer, size_t len)
     return syscall(SYS_e1000_transmit, 0, (uint32_t)buffer, (uint32_t)len, 0, 0, 0);
 }
 
+size_t
+sys_e1000_receive(void *buffer)
+{
+    return syscall(SYS_e1000_receive, 0, (uint32_t)buffer, 0, 0, 0, 0);
+}
+
 ssize_t
 sys_program_read(envid_t dst_env, void *va,
 		 int programid, size_t offset, size_t len)

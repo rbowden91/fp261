@@ -31,7 +31,6 @@ struct FdFile {
 
 struct FdSock {
     int sockid;
-    char padding[MAXPATHLEN];
 };
 
 // The file descriptor structure
@@ -63,5 +62,6 @@ int	dev_lookup(int devid, struct Dev **dev_store);
 extern struct Dev devfile;
 extern struct Dev devcons;
 extern struct Dev devpipe;
+extern struct Dev devsock;
 
 #endif	// not JOS_INC_FD_H

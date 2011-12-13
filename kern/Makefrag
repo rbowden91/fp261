@@ -53,6 +53,8 @@ KERN_BINFILES :=	user/idle \
 			user/echosrv \
 			user/echotest \
 			fs/bufcache \
+            net/testoutput \
+            net/testinput \
             net/ns
 			
 

@@ -264,8 +264,8 @@ serve(void) {
 		// ipc_recv will block the entire process, so we flush
 		// all pending work from other threads.  We limit the
 		// number of yields in case there's a rogue thread.
-		//for (i = 0; thread_wakeups_pending() && i < 32; ++i)
-		//	thread_yield();
+		for (i = 0; /*thread_wakeups_pending() &&*/ i < 32; ++i)
+			thread_yield();
 
 		perm = 0;
 		va = get_buffer();
@@ -314,10 +314,9 @@ void
 umain(int argc, char **argv)
 {
 	envid_t ns_envid = sys_getenvid();
-
 	binaryname = "ns";
-
-	// fork off the timer thread which will send us periodic messages
+	
+    // fork off the timer thread which will send us periodic messages
 	timer_envid = fork();
 	if (timer_envid < 0)
 		panic("error forking");

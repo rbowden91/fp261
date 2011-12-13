@@ -22,6 +22,7 @@ enum {
 	SYS_program_read,
 	SYS_time_msec,
 	SYS_e1000_transmit,
+	SYS_e1000_receive,
 	NSYSCALLS
 };
 

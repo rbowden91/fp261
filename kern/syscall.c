@@ -545,9 +545,15 @@ sys_time_msec(void)
 
 static int
 sys_e1000_transmit(uintptr_t buffer, size_t len)
-{
-    user_mem_assert(0, buffer, len, PTE_P|PTE_U);
+{   
+    user_mem_assert(curenv, buffer, len, 0);
     return e1000_transmit((void *)buffer, (size_t)len);
+}
+
+static int
+sys_e1000_receive(uintptr_t buffer)
+{
+    return e1000_receive((void *)buffer);
 }
 
 // Dispatches to the correct kernel function, passing the arguments.
@@ -577,7 +583,8 @@ syscall(uint32_t syscallno, uint32_t a1, uint32_t a2, uint32_t a3, uint32_t a4, 
         case SYS_time_msec: return sys_time_msec();
         case SYS_program_lookup: return sys_program_lookup((uintptr_t)a1, (size_t)a2);
         case SYS_env_set_trapframe: return sys_env_set_trapframe((envid_t) a1, (uintptr_t) a2);
-        case SYS_e1000_transmit: return sys_e1000_transmit((uintptr_t)a1, (size_t)a2);
+        case SYS_e1000_transmit: return sys_e1000_transmit((uintptr_t)a1, (size_t)a2); 
+        case SYS_e1000_receive: return sys_e1000_receive((uintptr_t)a1);
         default: return -E_INVAL;
     }
 }

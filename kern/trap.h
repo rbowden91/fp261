@@ -17,5 +17,6 @@ void print_regs(struct PushRegs *regs);
 void print_trapframe(struct Trapframe *tf, bool trap_just_happened = false);
 void page_fault_handler(struct Trapframe *);
 void backtrace(struct Trapframe *);
+void set_e1000_irqno(uint8_t e);
 
 #endif /* JOS_KERN_TRAP_H */

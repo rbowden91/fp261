@@ -380,7 +380,8 @@ pgdir_walk(pde_t *pgdir, uintptr_t va, bool create)
 	pgdir = &pgdir[PDX(va)];
 
     // if it's null, we have to fetch a page for a page table
-	if (!*pgdir)
+
+	if (!(*pgdir & PTE_P))
 	{
 		struct Page *p;
         
@@ -600,14 +601,14 @@ int
 user_mem_check(struct Env *env, uintptr_t va, size_t len, pte_t perm)
 {
 	// LAB 3: Your code here.
-    len = ROUNDUP(va + len, PGSIZE);
     uintptr_t oldva = va;
     va = ROUNDDOWN(va, PGSIZE);
+    len = ROUNDUP(oldva - va + len, PGSIZE);
     perm |= PTE_P;
         
     pte_t *pte;
     uintptr_t i;
-    for (i = va; i < len; i+=PGSIZE)
+    for (i = va; i < len + va; i+=PGSIZE)
     {
         if(i >= ULIM ||
            !(page_lookup(env->env_pgdir, i, &pte)) ||

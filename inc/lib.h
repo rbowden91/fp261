@@ -71,6 +71,7 @@ int	sys_program_lookup(const char *name, size_t len);
 ssize_t	sys_program_read(envid_t dst_env, void *pg, int programid, size_t offset, size_t len);
 unsigned 	sys_time_msec(void);
 int sys_e1000_transmit(void *buffer, size_t len);
+size_t sys_e1000_receive(void *buffer);
 
 #define THISENV (&envs[ENVX(sys_getenvid())])
 

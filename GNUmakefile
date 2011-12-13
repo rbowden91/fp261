@@ -143,7 +143,7 @@ PORT80	:= $(shell expr $(BASEPORT) + 2)
 
 
 # define QEMU options
-QEMUOPTS := -hda $(OBJDIR)/kernel.img  -net user -net nic,model=e1000 -redir tcp:$(PORT7)::7 -redir tcp:$(PORT80)::80 
+QEMUOPTS := -hda $(OBJDIR)/kernel.img  -net user -net nic,model=e1000 -redir tcp:$(PORT7)::7 -redir tcp:$(PORT80)::80 -redir udp:$(PORT7)::7 -net dump,file=qemu.pcap 
 	 		
 IMAGES := $(OBJDIR)/kernel.img
 QEMUGRAPHICOPTS := -serial stdio
@@ -151,7 +151,6 @@ QEMUNOGRAPHICOPTS := -serial mon:stdio
 
 QEMUOPTS += -hdb $(OBJDIR)/fs.img
 IMAGES += $(OBJDIR)/fs.img
-
 
 
 ifdef VNC

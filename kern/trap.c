@@ -13,7 +13,7 @@
 #include <kern/sched.h>
 #include <kern/kclock.h>
 #include <kern/picirq.h>
-
+#include <kern/e1000.h>
 
 // Global descriptor table.
 //
@@ -267,6 +267,14 @@ print_regs(struct PushRegs *regs)
 	cprintf("  eax  0x%08x\n", regs->reg_eax);
 }
 
+static uint8_t e1000_irqno = 0;
+
+void
+set_e1000_irqno(uint8_t e)
+{
+    e1000_irqno = e;
+}
+
 static void
 trap_dispatch(struct Trapframe *tf)
 {
@@ -296,7 +304,11 @@ trap_dispatch(struct Trapframe *tf)
 		return;
 	}
 
-
+    if (e1000_irqno && tf->tf_trapno == (uint32_t)IRQ_OFFSET + e1000_irqno)
+    {
+        e1000_trap_handler();
+        return;
+    }
 
     switch (tf->tf_trapno)
     {

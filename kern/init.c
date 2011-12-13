@@ -4,17 +4,17 @@
 #include <inc/string.h>
 #include <inc/assert.h>
 
+#include <kern/env.h>
+#include <kern/sched.h>
 #include <kern/monitor.h>
 #include <kern/console.h>
 #include <kern/pmap.h>
 #include <kern/kclock.h>
 #include <kern/trap.h>
-#include <kern/env.h>
-#include <kern/sched.h>
 #include <kern/picirq.h>
 #include <kern/pci.h>
 #include <kern/time.h>
-
+#include <kern/e1000.h>
 // Test the stack backtrace function (used in lab 1 only)
 void
 test_backtrace(int x)
@@ -71,6 +71,9 @@ i386_init(void)
     time_init();
     pci_init();
 
+    //const char *c = "hello, world!";
+    //e1000_transmit((void *)c, 13);
+
 	// Should always have an idle process as first one.
 	ENV_CREATE(user_idle);
 
@@ -104,10 +107,8 @@ i386_init(void)
 	}
 	ENV_CREATE(net_ns);
 
-
-
 #if defined(TEST)
-    ENV_CREATE2(TEST, TESTSIZE);
+//    ENV_CREATE2(TEST, TESTSIZE);
 #else
 	// Touch all you want.
 	// ENV_CREATE(user_writemotd);
@@ -115,6 +116,7 @@ i386_init(void)
 	// ENV_CREATE(user_icode);
 #endif // TEST*
 
+	ENV_CREATE(user_echosrv);
 
 	// Schedule and run a user environment!
 	// We want to run the bufcache first.
