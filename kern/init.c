@@ -116,7 +116,7 @@ i386_init(void)
 	// ENV_CREATE(user_icode);
 #endif // TEST*
 
-	ENV_CREATE(user_echosrv);
+	// ENV_CREATE(user_echosrv);
 
 	// Schedule and run a user environment!
 	// We want to run the bufcache first.
