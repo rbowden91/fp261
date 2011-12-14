@@ -188,7 +188,7 @@ serve_thread(uint32_t a) {
 	struct st_args *args = (struct st_args *)a;
 	union Nsipc *req = args->req;
 	int r;
-
+   
 	switch (args->reqno) {
 	case NSREQ_ACCEPT:
 	{
@@ -264,7 +264,7 @@ serve(void) {
 		// ipc_recv will block the entire process, so we flush
 		// all pending work from other threads.  We limit the
 		// number of yields in case there's a rogue thread.
-		for (i = 0; /*thread_wakeups_pending() &&*/ i < 32; ++i)
+		for (i = 0; thread_wakeups_pending() && i < 32; ++i)
 			thread_yield();
 
 		perm = 0;

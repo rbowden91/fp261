@@ -14,5 +14,5 @@ int thread_create(thread_id_t *tid, const char *name,
 		void (*entry)(uint32_t), uint32_t arg);
 void thread_yield(void);
 void thread_halt(void);
-
+int thread_wakeups_pending(void);
 #endif

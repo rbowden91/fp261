@@ -46,16 +46,18 @@ KERN_BINFILES :=	user/idle \
 			user/pingpong \
 			user/primes \
 			user/faultregs \
-			user/writemotd \
+            user/writemotd \
 			user/icode \
 			user/testtime \
 			user/httpd \
 			user/echosrv \
 			user/echotest \
 			fs/bufcache \
-            net/testoutput \
-            net/testinput \
-            net/ns
+			net/testoutput \
+			net/testinput \
+			net/ns \
+			user/migrated \
+			user/testmigrate
 			
 
 KERN_OBJFILES := $(patsubst %.c, $(OBJDIR)/%.o, $(KERN_SRCFILES))

@@ -160,6 +160,8 @@ int	opencons(void);
 // pipe.c
 int	pipe(int pipefds[2]);
 int	pipeisclosed(int pipefd);
+int pipe_ipc_recv_read();
+int pipe_ipc_send(envid_t envid, int read_fdnum);
 
 // wait.c
 void	wait(envid_t env);

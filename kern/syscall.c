@@ -107,7 +107,7 @@ sys_exofork(void)
 //	-E_BAD_ENV if environment envid doesn't currently exist,
 //		or the caller doesn't have permission to change envid.
 //	-E_INVAL if status is not a valid status for an environment.
-static int
+int
 sys_env_set_status(envid_t envid, int status)
 {
 	// Hint: Use the 'envid2env' function from kern/env.c to translate an

@@ -32,6 +32,7 @@
 
 #include <inc/lib.h>
 #include <inc/ns.h>
+#include <inc/connect.h>
 
 #include <jif/jif.h>
 
@@ -66,7 +67,7 @@ low_level_init(struct netif *netif)
     netif->hwaddr[2] = 0x00;
     netif->hwaddr[3] = 0x12;
     netif->hwaddr[4] = 0x34;
-    netif->hwaddr[5] = 0x56;
+    netif->hwaddr[5] = MACHINE?0x57:0x56;
 }
 
 /*

@@ -30,7 +30,10 @@ LIB_SRCFILES :=		$(LIB_SRCFILES) \
 			lib/wait.c	\
 			lib/sockets.c \
 			lib/nsipc.c \
-			lib/malloc.c
+			lib/malloc.c \
+			lib/mig.S \
+			lib/connect.c \
+			lib/migrate.c
 
 
 LIB_OBJFILES := $(patsubst lib/%.c, $(OBJDIR)/lib/%.o, $(LIB_SRCFILES))

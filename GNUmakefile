@@ -143,8 +143,9 @@ PORT80	:= $(shell expr $(BASEPORT) + 2)
 
 
 # define QEMU options
-QEMUOPTS := -hda $(OBJDIR)/kernel.img  -net user -net nic,model=e1000 -redir tcp:$(PORT7)::7 -redir tcp:$(PORT80)::80 -redir udp:$(PORT7)::7 -net dump,file=qemu.pcap 
+QEMUOPTS := -hda $(OBJDIR)/kernel.img  -net user -net nic,model=e1000 -redir tcp:$(PORT7)::7 -redir udp:$(PORT7)::7 -net dump,file=qemu.pcap 
 	 		
+QEMUOPTS2 := -hda $(OBJDIR)/kernel.img  -net user -net nic,model=e1000,macaddr=52:54:00:12:34:57 -redir tcp:7000::7 -net dump,file=qemu.pcap 
 IMAGES := $(OBJDIR)/kernel.img
 QEMUGRAPHICOPTS := -serial stdio
 QEMUNOGRAPHICOPTS := -serial mon:stdio
@@ -174,7 +175,10 @@ QEMUGDBOPTS = $(shell if $(QEMU) -nographic -help | grep -q '^-gdb'; \
 	sed "s/localhost:1234/localhost:$(GDB)/" < $^ > $@
 
 run qemu: $(QEMUCHECK) $(IMAGES)
-	$(QEMU) $(QEMUOPTS) $(QEMUGRAPHICOPTS)
+	sh bridge.sh; $(QEMU) $(QEMUOPTS) $(QEMUGRAPHICOPTS)
+
+run2 qemu2: $(QEMUCHECK) $(IMAGES)
+	$(QEMU) $(QEMUOPTS2) $(QEMUGRAPHICOPTS)
 
 run-nox qemu-nox: $(QEMUCHECK) $(IMAGES)
 	@echo "***"

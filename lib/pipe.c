@@ -116,6 +116,56 @@ pipeisclosed(int fdnum)
 	return _pipeisclosed(fd, p);
 }
 
+int
+pipe_ipc_recv_read() {
+    int r;
+    struct Fd *fd;
+
+    // allocate the file descriptor table entries
+    if ((r = fd_find_unused(&fd)) < 0
+        || (r = sys_page_alloc(0, fd, PTE_P|PTE_W|PTE_U|PTE_SHARE)) < 0) {
+        goto err;
+    }
+
+    envid_t from_env;
+    int perm;
+    if ((r = ipc_recv(&from_env, fd2data(fd), &perm)) < 0) {
+        goto err1;
+    }
+
+    if(perm == 0)
+        cprintf("no page was actually transferred!\n");
+    else
+        cprintf("perm: %x\n", perm);
+
+    cprintf("finished ipc_recv\n");
+
+    assert(perm & PTE_U && perm & PTE_P);
+    
+    // set up fd structures
+    fd->fd_dev_id = devpipe.dev_id;
+    fd->fd_omode = O_RDONLY;
+    return fd2num(fd);
+
+err1:
+    sys_page_unmap(0, fd);
+err:
+    return r;
+}
+
+
+int
+pipe_ipc_send(envid_t envid, int read_fdnum) {
+    struct Fd *fd;
+    int r;
+    if ((r = fd_lookup(read_fdnum, &fd, true)) < 0) {
+        return r;
+    }
+    ipc_send(envid, 0, fd2data(fd), PTE_P | PTE_U | PTE_W);
+    return 0;
+}
+
+
 static ssize_t
 devpipe_read(struct Fd *fd, void *vbuf, size_t n)
 {

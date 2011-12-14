@@ -7,6 +7,7 @@
 #include <inc/env.h>
 #include <inc/x86.h>
 #include <inc/mmu.h>
+#include <inc/connect.h>
 #include <inc/error.h>
 #include <inc/string.h>
  // LAB 6: Your driver code here
@@ -85,7 +86,7 @@ e1000_rinit(void)
     // RAL
     e1000_write(0x5400, 0x12005452);
     // RAH
-    e1000_write(0x5404, 0x5634 + (1<<31));
+    e1000_write(0x5404, (MACHINE?0x5734:0x5634) + (1<<31));
     // MTA
     for(uint32_t i = 0; i < 128; i++)
         e1000_write(0x5200 + 4 * i, 0);
@@ -134,9 +135,7 @@ e1000_transmit(void *buffer, size_t len)
     memcpy((void *)KADDR(tdesc_list[td_idx].addr), buffer, len);
     if(++td_idx == NUM_TDESCS)
         td_idx = 0;
-    lcr3((uint32_t)PADDR(kern_pgdir));
     e1000_write(0x3818, td_idx);
-    lcr3((uint32_t)PADDR(curenv->env_pgdir));
     return 0;
 }
 
@@ -167,9 +166,7 @@ e1000_receive(void *dst)
         if(++rd_idx == NUM_RDESCS)
             rd_idx = 0;
         // RDT
-        lcr3((uint32_t)PADDR(kern_pgdir));
         e1000_write(0x2818, rd_idx);
-        lcr3((uint32_t)PADDR(curenv->env_pgdir));
         return len;
     }
     // shouldn't reach

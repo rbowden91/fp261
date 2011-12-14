@@ -3,7 +3,7 @@
 #include <inc/stdio.h>
 #include <inc/string.h>
 #include <inc/assert.h>
-
+#include <inc/connect.h>
 #include <kern/env.h>
 #include <kern/sched.h>
 #include <kern/monitor.h>
@@ -71,16 +71,13 @@ i386_init(void)
     time_init();
     pci_init();
 
-    //const char *c = "hello, world!";
-    //e1000_transmit((void *)c, 13);
-
 	// Should always have an idle process as first one.
 	ENV_CREATE(user_idle);
 
 	// Start bufcache.  Bufcache is always meant to run as environment
 	// 0x1100, so we rearrange the free list to put that environment first.
 	{
-		extern struct Env *env_free_list;
+	    extern struct Env *env_free_list;
 		struct Env **pprev = &env_free_list, *bce = 0;
 		for (bce = 0; *pprev; pprev = &(*pprev)->env_link)
 			if (*pprev == &envs[ENVX(ENVID_BUFCACHE)]) {
@@ -94,7 +91,7 @@ i386_init(void)
 	ENV_CREATE(fs_bufcache);
 
     {
-		extern struct Env *env_free_list;
+	    extern struct Env *env_free_list;
 		struct Env **pprev = &env_free_list, *bce = 0;
 		for (bce = 0; *pprev; pprev = &(*pprev)->env_link)
 			if (*pprev == &envs[ENVX(ENVID_NS)]) {
@@ -115,10 +112,25 @@ i386_init(void)
 	// ENV_CREATE(user_testfile);
 	// ENV_CREATE(user_icode);
 #endif // TEST*
+    
+    // Start migrated. Migrated is always meant to run as environment
+    // 0x1101, so we rearrange the free list to put that first.
+    {
+	    extern struct Env *env_free_list;
+    	struct Env **pprev = &env_free_list, *bce = 0;
+		for (bce = 0; *pprev; pprev = &(*pprev)->env_link)
+			if (*pprev == &envs[ENVX(ENVID_MIGRATED)]) {
+				struct Env *e = *pprev;
+				*pprev = e->env_link;
+				e->env_link = env_free_list;
+				env_free_list = e;
+				break;
+			}
+    }
+    ENV_CREATE(user_migrated);
+    //ENV_CREATE(user_testmigrate);
 
-	// ENV_CREATE(user_echosrv);
-
-	// Schedule and run a user environment!
+    // Schedule and run a user environment!
 	// We want to run the bufcache first.
 	env_run(&envs[ENVX(ENVID_BUFCACHE)]);
 

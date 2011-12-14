@@ -56,6 +56,20 @@ thread_wait(volatile uint32_t *addr, uint32_t val, uint32_t msec) {
 }
 
 int
+thread_wakeups_pending(void)
+{
+    struct thread_context *tc = thread_queue.tq_first;
+    int n = 0;
+    while (tc)
+    {
+        if(tc->tc_wakeup)
+            ++n;
+        tc = tc->tc_queue_link;
+    }
+    return n;
+}
+
+int
 thread_onhalt(void (*fun)(thread_id_t)) {
     if (cur_tc->tc_nonhalt >= THREAD_NUM_ONHALT)
 	return -E_NO_MEM;
