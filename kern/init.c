@@ -145,7 +145,8 @@ i386_init(void)
     ENV_CREATE(user_migrate_client);
 	*/
 
-    ENV_CREATE(user_testmigrate);
+    if(!MACHINE)
+        ENV_CREATE(user_testmigrate);
 
     // Schedule and run a user environment!
 	// We want to run the bufcache first.

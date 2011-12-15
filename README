@@ -1,1 +1,7 @@
-Need to change jif/jif.c and kern/e1000.c to use "57" as last byte in mac address
+To run:
+1) Create a new folder qemu2
+2) cp -r * qemu2
+3) Edit qemu2/inc/connect.h and set MACHINE to 1
+4) In one terminal, run "make run" in the main directory
+5) In another terminal, run "make run2" in the qemu2 directory.
+6) The current iteration of testmigrate has JOS2 (the qemu2 dir) migrate a process to JOS1. JOS2 then tries to write to a page that was shared writeable but sent to JOS1. JOS2 successfully retrieves the page (which is "unmapped" from JOS1), reads the expected values from the page, and writes to the page.
