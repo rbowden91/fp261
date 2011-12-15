@@ -1,0 +1,124 @@
+#
+# Makefile fragment for JOS kernel.
+# This is NOT a complete makefile;
+# you must run GNU make in the top-level directory
+# where the GNUmakefile is located.
+#
+
+OBJDIRS += kern
+
+KERN_LDFLAGS := $(LDFLAGS) -T kern/kernel.ld -nostdlib
+
+# entry.S must be first, so that it's the first code in the text segment!!!
+#
+# We also snatch the use of a couple handy source files
+# from the lib directory, to avoid gratuitous code duplication.
+KERN_SRCFILES :=	kern/entry.S \
+			kern/init.c \
+			kern/console.c \
+			kern/monitor.c \
+			kern/pmap.c \
+			kern/env.c \
+			kern/kclock.c \
+			kern/picirq.c \
+			kern/printf.c \
+			kern/trap.c \
+			kern/trapentry.S \
+			kern/sched.c \
+			kern/syscall.c \
+			kern/kdebug.c \
+			lib/printfmt.c \
+			lib/readline.c \
+			lib/string.c
+
+# Only build files if they exist.
+KERN_SRCFILES := $(wildcard $(KERN_SRCFILES))
+
+KERN_SRCFILES +=	kern/e1000.c \
+			kern/pci.c \
+			kern/time.c
+
+# Include source for binary program images to embed within the kernel.
+KERN_SRCFILES +=	kern/programs.c
+
+# Binary program images to embed within the kernel.
+KERN_BINFILES :=	user/idle \
+			user/pingpong \
+			user/primes \
+			user/faultregs \
+            user/writemotd \
+			user/icode \
+			user/testtime \
+			user/httpd \
+			user/echosrv \
+			user/echotest \
+			fs/bufcache \
+			net/testoutput \
+			net/testinput \
+			net/ns \
+			user/migrated \
+			user/testmigrate
+			
+
+KERN_OBJFILES := $(patsubst %.c, $(OBJDIR)/%.o, $(KERN_SRCFILES))
+KERN_OBJFILES := $(patsubst %.S, $(OBJDIR)/%.o, $(KERN_OBJFILES))
+KERN_OBJFILES := $(patsubst %.cc, $(OBJDIR)/%.o, $(KERN_OBJFILES))
+KERN_OBJFILES := $(patsubst $(OBJDIR)/lib/%, $(OBJDIR)/kern/%, $(KERN_OBJFILES))
+
+KERN_BINFILES := $(patsubst %, $(OBJDIR)/%, $(KERN_BINFILES))
+
+# How to build kernel object files
+$(OBJDIR)/kern/%.o: $(GCCCHECK) kern/%.c
+	@echo + c++ $<
+	@mkdir -p $(@D)
+	$(V)$(CXX) -nostdinc $(KERN_CXXFLAGS) -c -o $@ $<
+
+$(OBJDIR)/kern/%.o: $(GCCCHECK) kern/%.cc
+	@echo + c++ $<
+	@mkdir -p $(@D)
+	$(V)$(CXX) -nostdinc $(KERN_CXXFLAGS) -c -o $@ $<
+
+$(OBJDIR)/kern/%.o: $(GCCCHECK) kern/%.S
+	@echo + as $<
+	@mkdir -p $(@D)
+	$(V)$(CC) -nostdinc $(KERN_CFLAGS) -c -o $@ $<
+
+$(OBJDIR)/kern/%.o: $(GCCCHECK) lib/%.c
+	@echo + c++ $<
+	@mkdir -p $(@D)
+	$(V)$(CXX) -nostdinc $(KERN_CXXFLAGS) -c -o $@ $<
+
+$(OBJDIR)/kern/%.o: $(GCCCHECK) lib/%.cc
+	@echo + c++ $<
+	@mkdir -p $(@D)
+	$(V)$(CXX) -nostdinc $(KERN_CXXFLAGS) -c -o $@ $<
+
+# How to build the kernel itself
+$(OBJDIR)/kernel: $(GCCCHECK) $(KERN_OBJFILES) $(KERN_BINFILES) kern/kernel.ld
+	@echo + ld $@
+	$(V)$(LD) -o $@ $(KERN_LDFLAGS) $(KERN_OBJFILES) $(GCC_LIB) -b binary $(KERN_BINFILES)
+	$(V)$(OBJDUMP) -S $@ > $@.asm
+	$(V)$(NM) -n $@ > $@.sym
+
+# How to build the kernel disk image
+$(OBJDIR)/kernel.img: $(OBJDIR)/mkbootdisk $(OBJDIR)/kernel $(OBJDIR)/boot/boot
+	@echo + mk $@
+	$(V)$(OBJDIR)/mkbootdisk $(OBJDIR)/boot/boot $(OBJDIR)/kernel @10000 >$(OBJDIR)/kernel.img
+
+all: $(OBJDIR)/kernel.img
+
+grub: $(OBJDIR)/jos-grub
+
+$(OBJDIR)/jos-grub: $(GCCCHECK) $(OBJDIR)/kernel
+	@echo + oc $@
+	$(V)$(OBJCOPY) --adjust-vma=0x10000000 $^ $@
+
+# How to build the kernbin structures
+kern/programs.c: kern/Makefrag
+	@echo + mk $@
+	$(V)echo '#include <kern/programs.h>' >$@
+	$(V)echo $(KERN_BINFILES) | tr ' ' '\012' | grep . | sed 's/obj\/\([^\/]*\)\/\(.*\)/extern const uint8_t _binary_obj_\1_\2_start[], _binary_obj_\1_\2_size[];/' >>$@
+	$(V)echo 'struct Program programs[] = {' >>$@
+	$(V)echo $(KERN_BINFILES) | tr ' ' '\012' | grep . | sort | sed 's/obj\/\([^\/]*\)\/\(.*\)/{ "\2", _binary_obj_\1_\2_start, (int)_binary_obj_\1_\2_size },/' >>$@
+	$(V)echo "{ 0, 0, 0 } };" >>$@
+	$(V)echo 'int nprograms = sizeof(programs) / sizeof(programs[0]) - 1;' >>$@

@@ -1,0 +1,54 @@
+OBJDIRS += lib
+
+LIB_SRCFILES :=		lib/console.c \
+			lib/libmain.c \
+			lib/exit.c \
+			lib/panic.c \
+			lib/printf.c \
+			lib/printfmt.c \
+			lib/readline.c \
+			lib/string.c \
+			lib/syscall.c \
+			lib/cxx.c \
+			lib/dumbfork.c
+
+LIB_SRCFILES :=		$(LIB_SRCFILES) \
+			lib/pgfault.c \
+			lib/resume.S \
+			lib/fork.c \
+			lib/ipc.c \
+			lib/spawn.c
+
+LIB_SRCFILES :=		$(LIB_SRCFILES) \
+			lib/args.c \
+			lib/fd.c \
+			lib/file.c \
+			lib/pipe.c \
+			lib/fprintf.c \
+			lib/pageref.c \
+			lib/spawn.c \
+			lib/wait.c	\
+			lib/sockets.c \
+			lib/nsipc.c \
+			lib/malloc.c \
+			lib/mig.S \
+			lib/connect.c \
+			lib/migrate.c
+
+
+LIB_OBJFILES := $(patsubst lib/%.c, $(OBJDIR)/lib/%.o, $(LIB_SRCFILES))
+LIB_OBJFILES := $(patsubst lib/%.S, $(OBJDIR)/lib/%.o, $(LIB_OBJFILES))
+
+$(OBJDIR)/lib/%.o: $(GCCCHECK) lib/%.c
+	@echo + c++[USER] $<
+	@mkdir -p $(@D)
+	$(V)$(CXX) -nostdinc $(USER_CXXFLAGS) -c -o $@ $<
+
+$(OBJDIR)/lib/%.o: $(GCCCHECK) lib/%.S
+	@echo + as[USER] $<
+	@mkdir -p $(@D)
+	$(V)$(CC) -nostdinc $(USER_CFLAGS) -c -o $@ $<
+
+$(OBJDIR)/lib/libjos.a: $(GCCCHECK) $(LIB_OBJFILES)
+	@echo + ar $@
+	$(V)$(AR) r $@ $(LIB_OBJFILES)
